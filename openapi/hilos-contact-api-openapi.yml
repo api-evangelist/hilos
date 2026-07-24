@@ -1,0 +1,642 @@
+openapi: 3.0.3
+info:
+  title: Hilos Contact API
+  version: 1.0.0
+  description: 'All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.
+
+
+    To use this token, send with every request an `Authorization: Token <your token>` header.
+
+
+    Production API server is located at api.hilos.io using HTTPS.
+
+
+    No versioning info is required for now.'
+servers:
+- url: https://api.hilos.io
+  description: Production Server
+security:
+- tokenAuth: []
+tags:
+- name: Contact
+paths:
+  /api/contact:
+    get:
+      tags:
+      - Contact
+      summary: List contacts
+      description: Lists contacts.
+      operationId: List Contacts
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: You can search with the base `phone`, `first_name`, `last_name`, `email` and `external_url` fields.
+        examples:
+          ByContactEmail:
+            value: erik@hilos.io
+            summary: by contact email
+          ByContactPhone:
+            value: '+525512345678'
+            summary: by contact phone
+          ByContactLastName:
+            value: Smith
+            summary: by contact last_name
+          ByContactFirstName:
+            value: Jonh
+            summary: by contact first_name
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedContactListReadPublicList'
+          description: ''
+      security:
+      - tokenAuth: []
+    post:
+      tags:
+      - Contact
+      summary: Create a contact
+      description: "When you POST a new Contact, we'll first check if another contact exists with the same phone. If it does, we'll do a partial update to the existing contact with this new information. We do this so you don't end up with duplicate contacts in your account. \n\nYou can set arbitrary attributes for a contact in the meta object, using `meta={custom_property_1: 'some value', another_property: 'another value ...', ...}`. We parse all these attributes as strings for now. \n\n We append the received `meta`, `tags` and `default_assignees` properties with the contact current ones, if you want to delete some key inside the `meta` or a `tags` you have to use the `overwrite_meta` or `overwrite_tags` attributes in the request body."
+      operationId: Create or Update Contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetailReadPublic'
+          description: ''
+      security:
+      - tokenAuth: []
+  /api/contact/{id}:
+    delete:
+      tags:
+      - Contact
+      summary: Delete Contact
+      description: Deleting a contact won't delete its history nor its sent messages.
+      operationId: Delete Contact Operation ID
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '204':
+          description: No response body
+      security:
+      - tokenAuth: []
+    get:
+      tags:
+      - Contact
+      summary: Get Contact
+      description: Gets a Contact by Id.
+      operationId: Get Contact
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetailRead'
+          description: ''
+      security:
+      - tokenAuth: []
+    patch:
+      tags:
+      - Contact
+      summary: Partially Update Contact
+      description: "Update a Contact sending only the properties you want to update. \n\n If you send the `meta` or `tags` the contact will have those properties appended with the contact current ones."
+      operationId: Partial Update Contact
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetailReadPublic'
+          description: ''
+      security:
+      - tokenAuth: []
+    put:
+      tags:
+      - Contact
+      summary: Update Contact
+      description: "Update a Contact. \n\n If you send a empty `meta` or `tags` the contact will have those properties removed."
+      operationId: Update Contact
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContactEditPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetailReadPublic'
+          description: ''
+      security:
+      - tokenAuth: []
+components:
+  schemas:
+    PaginatedContactListReadPublicList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactListReadPublic'
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    ContactDetailRead:
+      type: object
+      properties:
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        canonical_phone:
+          type: string
+          maxLength: 30
+        is_deleted:
+          type: boolean
+        created_by:
+          type: integer
+          readOnly: true
+          description: User ID of the user who created the contact
+        phone:
+          type: string
+          description: Phone number of the contact
+        id:
+          type: string
+          description: UUID representing the contact ID
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        last_updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización el
+        source:
+          type: string
+          maxLength: 255
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactNoteRead'
+          readOnly: true
+          description: Notes associated with the contact
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactTag'
+          description: Tags associated with the contact
+        default_assignees:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicRead'
+          description: ID of the default assignees for the contact
+        contact_import:
+          type: string
+          format: uuid
+          nullable: true
+        inbox_contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxContactURL'
+          description: URL of the inbox conversation associated with the contact
+        default_channel:
+          type: integer
+          nullable: true
+        default_conversation_url:
+          type: string
+          readOnly: true
+      required:
+      - canonical_phone
+      - created_by
+      - default_assignees
+      - default_conversation_url
+      - id
+      - inbox_contacts
+      - last_updated_on
+      - notes
+      - phone
+      - source
+      - tags
+    SimpleUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          nullable: true
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
+      required:
+      - id
+    ContactTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    ContactNoteRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        notes:
+          type: string
+        contact:
+          type: string
+          format: uuid
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        created_by:
+          $ref: '#/components/schemas/SimpleUser'
+      required:
+      - contact
+      - created_on
+      - id
+      - notes
+    AccountMemberUserBasicRead:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        account:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
+    InboxContactURL:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          readOnly: true
+        channel:
+          type: integer
+      required:
+      - channel
+      - url
+    ContactListReadPublic:
+      type: object
+      properties:
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        canonical_phone:
+          type: string
+          maxLength: 30
+        created_by:
+          type: integer
+          readOnly: true
+          description: User ID of the user who created the contact
+        phone:
+          type: string
+          description: Phone number of the contact
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        last_updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización el
+        source:
+          type: string
+          maxLength: 255
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactTag'
+          description: Tags associated with the contact
+        id:
+          type: string
+          readOnly: true
+          title: Contact ID
+          description: UUID representing the contact ID
+      required:
+      - canonical_phone
+      - created_by
+      - created_on
+      - id
+      - last_updated_on
+      - phone
+      - source
+      - tags
+    PatchedContactEditPublic:
+      type: object
+      properties:
+        phone:
+          type: string
+          maxLength: 30
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        id:
+          type: string
+          format: uuid
+        source:
+          type: string
+          default: website
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactTag'
+        default_assignees:
+          type: array
+          items:
+            type: integer
+        overwrite_tags:
+          type: boolean
+          default: false
+          description: If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_default_assignees:
+          type: boolean
+          default: false
+          description: If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_meta:
+          type: boolean
+          default: false
+          description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+    ContactDetailReadPublic:
+      type: object
+      properties:
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        canonical_phone:
+          type: string
+          maxLength: 30
+        created_by:
+          type: integer
+          readOnly: true
+          description: User ID of the user who created the contact
+        phone:
+          type: string
+          description: Phone number of the contact
+        id:
+          type: string
+          description: UUID representing the contact ID
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        last_updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización el
+        source:
+          type: string
+          maxLength: 255
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactTag'
+          description: Tags associated with the contact
+        default_assignees:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicRead'
+          description: ID of the default assignees for the contact
+        inbox_contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxContactURL'
+          description: URL of the inbox conversation associated with the contact
+        default_conversation_url:
+          type: string
+          readOnly: true
+      required:
+      - canonical_phone
+      - created_by
+      - default_assignees
+      - default_conversation_url
+      - id
+      - inbox_contacts
+      - last_updated_on
+      - phone
+      - source
+      - tags
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

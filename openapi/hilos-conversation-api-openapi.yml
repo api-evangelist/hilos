@@ -1,0 +1,554 @@
+openapi: 3.0.3
+info:
+  title: Hilos Contact Conversation API
+  version: 1.0.0
+  description: 'All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.
+
+
+    To use this token, send with every request an `Authorization: Token <your token>` header.
+
+
+    Production API server is located at api.hilos.io using HTTPS.
+
+
+    No versioning info is required for now.'
+servers:
+- url: https://api.hilos.io
+  description: Production Server
+security:
+- tokenAuth: []
+tags:
+- name: Conversation
+paths:
+  /api/inbox/conversation:
+    get:
+      tags:
+      - Conversation
+      summary: List Conversations
+      description: 'Lists Conversations. '
+      operationId: List Conversations
+      parameters:
+      - in: query
+        name: contact
+        schema:
+          type: string
+          format: uuid
+        description: A Contact Id to filter the Conversations and only get those from that Contact.
+        examples:
+          OnlyReturnTheConversationsOfThisContact:
+            value: a3ff7ee5-0c11-49e2-a0d6-7e316626f7b1
+            summary: Only return the Conversations of this Contact
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedConversationReadSimpleList'
+          description: ''
+      security:
+      - tokenAuth: []
+  /api/inbox/conversation/{id}/update:
+    patch:
+      tags:
+      - Conversation
+      summary: Partially Update a Conversation
+      description: Partially update a Conversation
+      operationId: Partially update a Conversation
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedConversationEdit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedConversationEdit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedConversationEdit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationEdit'
+          description: ''
+      security:
+      - tokenAuth: []
+    put:
+      tags:
+      - Conversation
+      summary: Update a conversation
+      description: Update a Conversation
+      operationId: Update a Conversation
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationEdit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ConversationEdit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ConversationEdit'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationEdit'
+          description: ''
+      security:
+      - tokenAuth: []
+components:
+  schemas:
+    ConversationEdit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/ConversationStatusEnum'
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicEdit'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type: integer
+          nullable: true
+      required:
+      - assigned
+      - contact
+      - created_on
+      - id
+      - source
+    MessageTypeEnum:
+      enum:
+      - audio
+      - voice
+      - button
+      - document
+      - text
+      - image
+      - interactive
+      - order
+      - sticker
+      - system
+      - unknown
+      - video
+      - unsupported
+      - location
+      - contacts
+      - template
+      - reaction
+      - ephemeral
+      type: string
+    ConversationTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    MessageStatusEnum:
+      enum:
+      - new
+      - retry
+      - accepted
+      - sending
+      - sent
+      - receiving
+      - received
+      - delivered
+      - undelivered
+      - failed
+      - read
+      - deleted
+      type: string
+    PatchedConversationEdit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/ConversationStatusEnum'
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicEdit'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type: integer
+          nullable: true
+    AccountMemberUserBasicEdit:
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+      - id
+    MessageSourceEnum:
+      enum:
+      - INBOUND
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      type: string
+    ConversationSourceEnum:
+      enum:
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      - UNKNOWN
+      type: string
+    WhatsAppMessageSimple:
+      type: object
+      properties:
+        id:
+          type: string
+        to_number:
+          type: string
+          readOnly: true
+        from_number:
+          type: string
+          readOnly: true
+        body:
+          type: string
+          nullable: true
+        direction:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        contact:
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/MessageStatusEnum'
+          readOnly: true
+        queued_on:
+          type: string
+          format: date-time
+          readOnly: true
+        accepted_on:
+          type: string
+          format: date-time
+          readOnly: true
+        sent_on:
+          type: string
+          format: date-time
+          readOnly: true
+        delivered_on:
+          type: string
+          format: date-time
+          readOnly: true
+        read_on:
+          type: string
+          format: date-time
+          readOnly: true
+        failed_on:
+          type: string
+          format: date-time
+          readOnly: true
+        provider_id:
+          type: string
+          readOnly: true
+        provider_error_code:
+          type: string
+          readOnly: true
+        provider_error_message:
+          type: string
+          readOnly: true
+        sent_by:
+          $ref: '#/components/schemas/SimpleUser'
+        is_deleted:
+          type: boolean
+          readOnly: true
+        content:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        whatsapp_template:
+          type: string
+          format: uuid
+          readOnly: true
+        content_type:
+          type: string
+          readOnly: true
+        content_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        msg_type:
+          $ref: '#/components/schemas/MessageTypeEnum'
+        failed_attempts:
+          type: integer
+          readOnly: true
+        source:
+          allOf:
+          - $ref: '#/components/schemas/MessageSourceEnum'
+          readOnly: true
+      required:
+      - accepted_on
+      - contact
+      - content
+      - content_type
+      - delivered_on
+      - direction
+      - failed_attempts
+      - failed_on
+      - from_number
+      - id
+      - is_deleted
+      - provider_error_code
+      - provider_error_message
+      - provider_id
+      - queued_on
+      - read_on
+      - sent_by
+      - sent_on
+      - source
+      - status
+      - timestamp
+      - to_number
+      - whatsapp_template
+    ConversationReadSimple:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ConversationStatusEnum'
+          readOnly: true
+        first_message:
+          allOf:
+          - $ref: '#/components/schemas/WhatsAppMessageSimple'
+          description: The first Message of the Conversation.
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicRead'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type: integer
+          nullable: true
+      required:
+      - assigned
+      - contact
+      - created_on
+      - first_message
+      - id
+      - source
+      - status
+    ConversationStatusEnum:
+      enum:
+      - CREATED
+      - FLOW
+      - FLOW_PAUSED
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - CLOSED
+      type: string
+    PaginatedConversationReadSimpleList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationReadSimple'
+    SimpleUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          nullable: true
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
+      required:
+      - id
+    AccountMemberUserBasicRead:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        account:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: Hilos Contact User API
+  version: 1.0.0
+  description: 'All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.
+
+
+    To use this token, send with every request an `Authorization: Token <your token>` header.
+
+
+    Production API server is located at api.hilos.io using HTTPS.
+
+
+    No versioning info is required for now.'
+servers:
+- url: https://api.hilos.io
+  description: Production Server
+security:
+- tokenAuth: []
+tags:
+- name: User
+paths:
+  /api/account-member:
+    get:
+      tags:
+      - User
+      summary: List Users
+      description: 'Lists Users. '
+      operationId: List Users
+      parameters:
+      - in: query
+        name: email__icontains
+        schema:
+          type: string
+      - in: query
+        name: email__iendswith
+        schema:
+          type: string
+      - in: query
+        name: email__iexact
+        schema:
+          type: string
+      - in: query
+        name: email__isnull
+        schema:
+          type: boolean
+      - in: query
+        name: email__istartswith
+        schema:
+          type: string
+      - in: query
+        name: first_name__icontains
+        schema:
+          type: string
+      - in: query
+        name: first_name__iendswith
+        schema:
+          type: string
+      - in: query
+        name: first_name__iexact
+        schema:
+          type: string
+      - in: query
+        name: first_name__isnull
+        schema:
+          type: boolean
+      - in: query
+        name: first_name__istartswith
+        schema:
+          type: string
+      - in: query
+        name: last_name__icontains
+        schema:
+          type: string
+      - in: query
+        name: last_name__iendswith
+        schema:
+          type: string
+      - in: query
+        name: last_name__iexact
+        schema:
+          type: string
+      - in: query
+        name: last_name__isnull
+        schema:
+          type: boolean
+      - in: query
+        name: last_name__istartswith
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: You can search users with the `email`, `first_name` or `last_name` fields.
+        examples:
+          CreatedByEmail:
+            value: erik@hilos.io
+            summary: created by email
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountMemberUser'
+          description: ''
+      security:
+      - tokenAuth: []
+components:
+  schemas:
+    ChannelTypeEnum:
+      enum:
+      - WHATSAPP
+      - EMAIL
+      - INSTAGRAM
+      - FB_MESSENGER
+      - TELEGRAM
+      - SMS
+      - VOICE
+      type: string
+    AccountMemberUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        id:
+          type: integer
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamSimple'
+        account:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+        user_permissions:
+          type: array
+          items:
+            type: string
+        available_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleChannel'
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    ChannelStatusEnum:
+      enum:
+      - NEW
+      - ACTIVE
+      - INACTIVE
+      type: string
+    TeamSimple:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        assignment_strategy:
+          type: string
+          maxLength: 15
+      required:
+      - assignment_strategy
+      - id
+      - name
+    ChannelProviderEnum:
+      enum:
+      - META_CLOUD_API
+      - TECH_PROVIDER_CLOUD_API
+      - D360_CLOUD_API
+      - 360DIALOG
+      type: string
+    SimpleChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
+          type: string
+          maxLength: 100
+        channel_id:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
+      required:
+      - channel_id
+      - id
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
