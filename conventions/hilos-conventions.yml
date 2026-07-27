@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://hilos-40.mintlify.app/docs/developer/getting-started (auth, errors, pagination)
+authentication:
+  style: api-key
+  header: Authorization
+  format: Token <key>
+  key_management: https://app.hilos.io/dev/api-keys
+  ref: authentication/hilos-authentication.yml
+idempotency:
+  supported: false
+  note: 'No idempotency-key header documented. Note: POST /api/contact is upsert-by-phone (creates or
+    partial-updates the matching contact), which is naturally idempotent on phone but is not a request-idempotency-key
+    contract.'
+pagination:
+  style: page-number
+  params:
+  - page
+  - page_size
+  note: page selects the page; page_size sets items per page.
+versioning:
+  style: unversioned
+  ref: lifecycle/hilos-lifecycle.yml
+error_envelope:
+  format: plain-json
+  ref: errors/hilos-problem-types.yml
+rate_limits:
+  documented: false
+  note: No public rate-limit documentation found.
+base_url: https://api.hilos.io/api/

@@ -1,8 +1,11 @@
 aid: hilos
 name: Hilos
-description: Hilos is a company surfaced as a portfolio company of 500-global, techstars and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Hilos is a WhatsApp Business Platform automation company (backed by 500 Global and Techstars, now
+  part of ActiveCampaign) that helps businesses capture leads, qualify prospects, and automate
+  follow-ups over WhatsApp's Cloud API. Its REST API exposes contacts, inbox conversations, WhatsApp
+  message templates, and no-code flow executions, authenticated with an `Authorization: Token` API
+  key against https://api.hilos.io/api/ and paginated with `page` / `page_size` query parameters.
 url: https://raw.githubusercontent.com/api-evangelist/hilos/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,17 +14,147 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://app.hilos.io/logo512.png
 tags:
 - Company
-apis: []
+- WhatsApp
+- Messaging
+- Automation
+- CRM
+- Conversational Commerce
+- Chatbots
+- Customer Engagement
+- Marketing
+apis:
+- aid: hilos:hilos-contact-api
+  name: Hilos Contact API
+  description: The Contact API from Hilos — 2 operation(s) for contact.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-contact-api-openapi.yml
+- aid: hilos:hilos-conversation-api
+  name: Hilos Conversation API
+  description: The Conversation API from Hilos — 2 operation(s) for conversation.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - Conversation
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-conversation-api-openapi.yml
+- aid: hilos:hilos-flow-execution-api
+  name: Hilos Flow Execution API
+  description: The Flow Execution API from Hilos — 3 operation(s) for flow execution.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - Flow Execution
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-flow-execution-api-openapi.yml
+- aid: hilos:hilos-flow-execution-contact-api
+  name: Hilos Flow Execution Contact API
+  description: The Flow Execution Contact API from Hilos — 2 operation(s) for flow execution contact.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - Flow Execution Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-flow-execution-contact-api-openapi.yml
+- aid: hilos:hilos-user-api
+  name: Hilos User API
+  description: The User API from Hilos — 1 operation(s) for user.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-user-api-openapi.yml
+- aid: hilos:hilos-whatsapp-api
+  name: Hilos WhatsApp API
+  description: The WhatsApp API from Hilos — 3 operation(s) for whatsapp.
+  humanURL: https://hilos.io/docs
+  baseURL: https://api.hilos.io/api/
+  tags:
+  - WhatsApp
+  properties:
+  - type: OpenAPI
+    url: openapi/hilos-whatsapp-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/hilos-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/hilos-agentic-access.yml
 - type: Website
   url: https://hilos.io
+- type: DeveloperPortal
+  url: https://hilos.io/docs
+- type: Documentation
+  url: https://hilos.io/docs
+- type: APIReference
+  url: https://hilos-40.mintlify.app/docs/developer/apidocs/contact/get-apicontact
+- type: GettingStarted
+  url: https://hilos-40.mintlify.app/docs/developer/getting-started/test-request
+- type: Authentication
+  url: authentication/hilos-authentication.yml
+- type: Blog
+  url: https://hilos.io/blog
+- type: Pricing
+  url: https://hilos.io/pricing
+- type: SignUp
+  url: https://hilos.io/signup-ac
+- type: Login
+  url: https://app.hilos.io/login
+- type: TermsOfService
+  url: https://hilos.io/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://hilos.io/privacy-policy
+- type: Support
+  url: mailto:hey@hilos.io
+- type: LLMsTxt
+  url: llms/hilos-llms.txt
+- type: Conventions
+  url: conventions/hilos-conventions.yml
+- type: ErrorCatalog
+  url: errors/hilos-problem-types.yml
+- type: Conformance
+  url: conformance/hilos-conformance.yml
+- type: Lifecycle
+  url: lifecycle/hilos-lifecycle.yml
+- type: DataModel
+  url: data-model/hilos-data-model.yml
+- type: MCPServer
+  url: mcp/hilos-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

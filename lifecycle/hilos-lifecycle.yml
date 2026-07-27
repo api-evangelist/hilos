@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: searched
+source: https://hilos-40.mintlify.app/docs/developer + openapi info
+versioning:
+  scheme: unversioned
+  current: null
+  docs: https://hilos-40.mintlify.app/docs/developer/getting-started/auth
+  note: OpenAPI info states "No versioning info is required for now." Endpoints live under /api/ with
+    no version segment.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/sunset policy found.
+status_page: null
+sla: null
+deprecated_operations: []

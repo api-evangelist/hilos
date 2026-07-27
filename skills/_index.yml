@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/hilos-openapi-original.yml
+skills:
+  - file: hilos-send-whatsapp-template.md
+    name: Send a WhatsApp template message
+    api: openapi/hilos-openapi-original.yml
+    operations: [List WhatsApp Templates, Get WhatsApp Template, Send a WhatsApp Template Message]
+  - file: hilos-sync-contact-and-run-flow.md
+    name: Sync a contact and run a flow
+    api: openapi/hilos-openapi-original.yml
+    operations: [Create or Update Contact, Create a Flow Execution, Get Flow Execution, List Flow Execution Contact]
+  - file: hilos-manage-inbox-conversations.md
+    name: Manage inbox conversations
+    api: openapi/hilos-openapi-original.yml
+    operations: [List Conversations, Update a Conversation, Partially update a Conversation]

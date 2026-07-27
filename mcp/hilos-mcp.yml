@@ -1,0 +1,67 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/hilos-openapi-original.yml
+note: 'Hilos publishes no official hosted MCP server; this is a candidate tool list derived one-per-operation
+  from the OpenAPI. Auth is an Authorization: Token API key.'
+server:
+  name: hilos
+  transport: http
+tools:
+- name: list_account_member
+  description: List Users
+  source_operation: openapi/hilos-openapi-original.yml#List Users
+- name: list_channels_whatsapp_template
+  description: List WhatsApp Templates
+  source_operation: openapi/hilos-openapi-original.yml#List WhatsApp Templates
+- name: delete_channels_whatsapp_template
+  description: Delete WhatsApp Template
+  source_operation: openapi/hilos-openapi-original.yml#Delete WhatsApp Template
+- name: get_channels_whatsapp_template
+  description: Get WhatsApp Template
+  source_operation: openapi/hilos-openapi-original.yml#Get WhatsApp Template
+- name: create_channels_whatsapp_template_send
+  description: Send a WhatsApp Template
+  source_operation: openapi/hilos-openapi-original.yml#Send a WhatsApp Template Message
+- name: list_contact
+  description: List contacts
+  source_operation: openapi/hilos-openapi-original.yml#List Contacts
+- name: create_contact
+  description: Create a contact
+  source_operation: openapi/hilos-openapi-original.yml#Create or Update Contact
+- name: delete_contact
+  description: Delete Contact
+  source_operation: openapi/hilos-openapi-original.yml#Delete Contact Operation ID
+- name: get_contact
+  description: Get Contact
+  source_operation: openapi/hilos-openapi-original.yml#Get Contact
+- name: update_contact
+  description: Partially Update Contact
+  source_operation: openapi/hilos-openapi-original.yml#Partial Update Contact
+- name: update_contact
+  description: Update Contact
+  source_operation: openapi/hilos-openapi-original.yml#Update Contact
+- name: list_flow_execution
+  description: List Flow Executions
+  source_operation: openapi/hilos-openapi-original.yml#List Flow Execution
+- name: list_flow_execution_contact
+  description: List Flow Execution Contacts
+  source_operation: openapi/hilos-openapi-original.yml#List Flow Execution Contact
+- name: get_flow_execution_contact
+  description: Get Flow Execution Contact by Id
+  source_operation: openapi/hilos-openapi-original.yml#Get Flow Execution Contact
+- name: get_flow_execution
+  description: Get Flow Execution
+  source_operation: openapi/hilos-openapi-original.yml#Get Flow Execution
+- name: create_flow_run
+  description: Create a Flow Execution
+  source_operation: openapi/hilos-openapi-original.yml#Create a Flow Execution
+- name: list_inbox_conversation
+  description: List Conversations
+  source_operation: openapi/hilos-openapi-original.yml#List Conversations
+- name: update_inbox_conversation_update
+  description: Partially Update a Conversation
+  source_operation: openapi/hilos-openapi-original.yml#Partially update a Conversation
+- name: update_inbox_conversation_update
+  description: Update a conversation
+  source_operation: openapi/hilos-openapi-original.yml#Update a Conversation

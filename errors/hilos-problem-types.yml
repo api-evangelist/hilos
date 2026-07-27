@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: https://hilos-40.mintlify.app/docs/developer/getting-started/errors + openapi/hilos-openapi-original.yml
+format: plain-json
+envelope_note: Hilos returns plain JSON error bodies (not RFC 9457 application/problem+json).
+problems:
+- status: 401
+  title: Unauthorized
+  remediation: Check your Authorization header is `Token <YOUR API KEY>`.
+- status: 403
+  title: Forbidden
+  remediation: Valid request but the server refuses to respond; try again later.
+- status: 404
+  title: Not Found
+  remediation: Resource, HTTP method, or endpoint is not correct.
+- status: 405
+  title: Method Not Allowed
+  remediation: You are probably using an incorrect HTTP method.
+- status: 500
+  title: Server Error
+  remediation: Contact hey@hilos.io or retry in a few minutes.
+spec_error_responses: []

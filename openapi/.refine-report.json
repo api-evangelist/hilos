@@ -1,0 +1,24 @@
+{
+  "provider": "hilos",
+  "sources": [
+    "hilos-contact-api-openapi.yml",
+    "hilos-conversation-api-openapi.yml",
+    "hilos-flow-execution-api-openapi.yml",
+    "hilos-flow-execution-contact-api-openapi.yml",
+    "hilos-user-api-openapi.yml",
+    "hilos-whatsapp-api-openapi.yml"
+  ],
+  "outputs": [
+    "hilos-contact-api-openapi.yml",
+    "hilos-conversation-api-openapi.yml",
+    "hilos-flow-execution-api-openapi.yml",
+    "hilos-flow-execution-contact-api-openapi.yml",
+    "hilos-user-api-openapi.yml",
+    "hilos-whatsapp-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

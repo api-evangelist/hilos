@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Hilos API
+  version: 1.0.0
+extends: openapi/hilos-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-19'
+    x-api-key-auth: 'Authorization: Token <key> — create at https://app.hilos.io/dev/api-keys'
+    x-pagination: page + page_size query parameters
+    x-error-envelope: plain JSON; status codes 401/403/404/405/500
+- target: $.servers
+  update:
+  - url: https://api.hilos.io
+    description: Production Server

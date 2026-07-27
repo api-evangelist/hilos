@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: hilos.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  8 06:08:48 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.hilos.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  8 06:08:48 2026 GMT
+  hsts: null
+domains:
+- domain: hilos.io
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

@@ -1,0 +1,35 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of /.well-known/* on api.hilos.io, hilos.io, app.hilos.io
+note: No well-known documents are published. api.hilos.io and hilos.io return 404 for all probed paths;
+  app.hilos.io returns the SPA index.html (text/html) for every path, which is not a valid well-known
+  document.
+hosts:
+- host: https://api.hilos.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://hilos.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://app.hilos.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    valid: false
+    note: SPA shell (text/html), not a real document
+  - path: /.well-known/openid-configuration
+    status: 200
+    valid: false
+    note: SPA shell (text/html), not a real document

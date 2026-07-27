@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hilos-openapi-original.yml + https://hilos-40.mintlify.app/docs/developer/getting-started
+standards:
+- id: oauth2
+  conforms: false
+  evidence: 'API uses a static API key (Authorization: Token), no oauth2 securityScheme'
+- id: openid-connect
+  conforms: false
+- id: api-key-auth
+  conforms: true
+  evidence: 'securitySchemes.tokenAuth: apiKey in header Authorization with Token prefix'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as plain JSON, not application/problem+json
+- id: offset-pagination
+  conforms: true
+  evidence: page + page_size query parameters documented
+- id: idempotency
+  conforms: false
+  evidence: no idempotency-key header documented
+- id: openapi-3
+  conforms: true
+  evidence: provider publishes OpenAPI 3.0.3 via Mintlify
+- id: whatsapp-cloud-api
+  conforms: true
+  evidence: built on WhatsApp Cloud API; template send + management endpoints
