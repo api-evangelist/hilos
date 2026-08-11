@@ -107,6 +107,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/hilos-openapi-overlay.yaml
 - type: DomainSecurity
   url: security/hilos-domain-security.yml
 - type: AgenticAccess
