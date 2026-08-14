@@ -28,7 +28,7 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 image: https://app.hilos.io/logo512.png
 tags:
 - Company
@@ -120,15 +120,15 @@ common:
 - type: Documentation
   url: https://hilos.io/docs
 - type: APIReference
-  url: https://hilos-40.mintlify.app/docs/developer/apidocs/contact/get-apicontact
+  url: https://hilos.io/docs/developer/apidocs/contact/get-apicontact
 - type: GettingStarted
-  url: https://hilos-40.mintlify.app/docs/developer/getting-started/test-request
+  url: https://hilos.io/docs/developer/getting-started/test-request
 - type: Authentication
   url: authentication/hilos-authentication.yml
 - type: Blog
   url: https://hilos.io/blog
-- type: Pricing
-  url: https://hilos.io/pricing
+- type: Plans
+  url: plans/hilos-plans-pricing.yml
 - type: SignUp
   url: https://hilos.io/signup-ac
 - type: Login
@@ -153,10 +153,22 @@ common:
   url: data-model/hilos-data-model.yml
 - type: MCPServer
   url: mcp/hilos-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/hilos-tool-crosswalk.yml
+- type: AgentCard
+  url: a2a/hilos-a2a.yml
+- type: WellKnown
+  url: well-known/hilos-well-known.yml
+- type: Packages
+  url: packages/hilos-packages.yml
+- type: RateLimits
+  url: rate-limits/hilos-rate-limits.yml
+- type: Events
+  url: asyncapi/hilos-events.yml
 - type: AgentSkill
   url: skills/_index.yml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 9
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
