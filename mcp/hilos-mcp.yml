@@ -1,67 +1,78 @@
-generated: '2026-07-19'
-method: derived
-status: candidate
-source: openapi/hilos-openapi-original.yml
-note: 'Hilos publishes no official hosted MCP server; this is a candidate tool list derived one-per-operation
-  from the OpenAPI. Auth is an Authorization: Token API key.'
+generated: '2026-08-13'
+method: searched
+status: published
+source: >-
+  Probed https://hilos-40.mintlify.app/mcp with {"jsonrpc":"2.0","id":1,"method":"tools/list"} (HTTP 200,
+  anonymous) and https://hilos-40.mintlify.app/.well-known/mcp.json (HTTP 200). Candidate tools for the
+  REST API are still derived from openapi/_original/hilos-openapi-original.yml.
+deployment:
+  mode: remote
+  endpoint: https://hilos-40.mintlify.app/mcp
+  auth: none
+  verified: probed
+  checked: '2026-08-13'
+  scope: documentation
+  note: >-
+    Reachable and callable right now with no credentials. This is the Mintlify documentation MCP for the
+    Hilos docs site — it searches and reads the docs, it does NOT call the Hilos REST API. There is no
+    stdio package: nothing to npx, nothing to install.
 server:
-  name: hilos
+  name: Hilos Docs
   transport: http
+  url: https://hilos-40.mintlify.app/mcp
+  platform: mintlify
+  discovery: /.well-known/mcp.json
+  authentication: none
+  covers: documentation only
 tools:
-- name: list_account_member
-  description: List Users
-  source_operation: openapi/hilos-openapi-original.yml#List Users
-- name: list_channels_whatsapp_template
-  description: List WhatsApp Templates
-  source_operation: openapi/hilos-openapi-original.yml#List WhatsApp Templates
-- name: delete_channels_whatsapp_template
-  description: Delete WhatsApp Template
-  source_operation: openapi/hilos-openapi-original.yml#Delete WhatsApp Template
-- name: get_channels_whatsapp_template
-  description: Get WhatsApp Template
-  source_operation: openapi/hilos-openapi-original.yml#Get WhatsApp Template
-- name: create_channels_whatsapp_template_send
-  description: Send a WhatsApp Template
-  source_operation: openapi/hilos-openapi-original.yml#Send a WhatsApp Template Message
-- name: list_contact
-  description: List contacts
-  source_operation: openapi/hilos-openapi-original.yml#List Contacts
-- name: create_contact
-  description: Create a contact
-  source_operation: openapi/hilos-openapi-original.yml#Create or Update Contact
-- name: delete_contact
-  description: Delete Contact
-  source_operation: openapi/hilos-openapi-original.yml#Delete Contact Operation ID
-- name: get_contact
-  description: Get Contact
-  source_operation: openapi/hilos-openapi-original.yml#Get Contact
-- name: update_contact
-  description: Partially Update Contact
-  source_operation: openapi/hilos-openapi-original.yml#Partial Update Contact
-- name: update_contact
-  description: Update Contact
-  source_operation: openapi/hilos-openapi-original.yml#Update Contact
-- name: list_flow_execution
-  description: List Flow Executions
-  source_operation: openapi/hilos-openapi-original.yml#List Flow Execution
-- name: list_flow_execution_contact
-  description: List Flow Execution Contacts
-  source_operation: openapi/hilos-openapi-original.yml#List Flow Execution Contact
-- name: get_flow_execution_contact
-  description: Get Flow Execution Contact by Id
-  source_operation: openapi/hilos-openapi-original.yml#Get Flow Execution Contact
-- name: get_flow_execution
-  description: Get Flow Execution
-  source_operation: openapi/hilos-openapi-original.yml#Get Flow Execution
-- name: create_flow_run
-  description: Create a Flow Execution
-  source_operation: openapi/hilos-openapi-original.yml#Create a Flow Execution
-- name: list_inbox_conversation
-  description: List Conversations
-  source_operation: openapi/hilos-openapi-original.yml#List Conversations
-- name: update_inbox_conversation_update
-  description: Partially Update a Conversation
-  source_operation: openapi/hilos-openapi-original.yml#Partially update a Conversation
-- name: update_inbox_conversation_update
-  description: Update a conversation
-  source_operation: openapi/hilos-openapi-original.yml#Update a Conversation
+- name: search_hilos_docs
+  title: Search documentation
+  input_schema_properties: [query]
+  description: >-
+    Search across the Hilos Docs knowledge base for documentation, code examples, API references and
+    guides; returns contextual content with titles and direct links.
+- name: query_docs_filesystem_hilos_docs
+  input_schema_properties: [command]
+  description: Run filesystem-style commands (head/cat) against the documentation tree to read full pages.
+- name: submit_feedback
+  title: Submit documentation feedback
+  input_schema_properties: [path, feedback]
+  description: Submit feedback about a documentation page.
+rest_api_coverage:
+  covered: false
+  note: >-
+    No MCP server exposes the Hilos REST API (contacts, conversations, WhatsApp templates, flow
+    executions, users). An agent can read the Hilos docs over MCP but must fall back to raw HTTP with an
+    `Authorization: Token <key>` header to actually do anything. The candidate tool list below is what
+    such a server would look like if Hilos shipped one — it is DERIVED, not published.
+candidate_tools:
+  method: derived
+  status: candidate
+  source: openapi/_original/hilos-openapi-original.yml
+  count: 19
+  tools:
+  - {name: list_account_member, description: List Users, source_operation: 'openapi/_original/hilos-openapi-original.yml#List Users'}
+  - {name: list_channels_whatsapp_template, description: List WhatsApp Templates, source_operation: 'openapi/_original/hilos-openapi-original.yml#List WhatsApp Templates'}
+  - {name: delete_channels_whatsapp_template, description: Delete WhatsApp Template, source_operation: 'openapi/_original/hilos-openapi-original.yml#Delete WhatsApp Template'}
+  - {name: get_channels_whatsapp_template, description: Get WhatsApp Template, source_operation: 'openapi/_original/hilos-openapi-original.yml#Get WhatsApp Template'}
+  - {name: create_channels_whatsapp_template_send, description: Send a WhatsApp Template, source_operation: 'openapi/_original/hilos-openapi-original.yml#Send a WhatsApp Template Message'}
+  - {name: list_contact, description: List contacts, source_operation: 'openapi/_original/hilos-openapi-original.yml#List Contacts'}
+  - {name: create_contact, description: Create a contact, source_operation: 'openapi/_original/hilos-openapi-original.yml#Create or Update Contact'}
+  - {name: delete_contact, description: Delete Contact, source_operation: 'openapi/_original/hilos-openapi-original.yml#Delete Contact Operation ID'}
+  - {name: get_contact, description: Get Contact, source_operation: 'openapi/_original/hilos-openapi-original.yml#Get Contact'}
+  - {name: patch_contact, description: Partially Update Contact, source_operation: 'openapi/_original/hilos-openapi-original.yml#Partial Update Contact'}
+  - {name: update_contact, description: Update Contact, source_operation: 'openapi/_original/hilos-openapi-original.yml#Update Contact'}
+  - {name: list_flow_execution, description: List Flow Executions, source_operation: 'openapi/_original/hilos-openapi-original.yml#List Flow Execution'}
+  - {name: list_flow_execution_contact, description: List Flow Execution Contacts, source_operation: 'openapi/_original/hilos-openapi-original.yml#List Flow Execution Contact'}
+  - {name: get_flow_execution_contact, description: Get Flow Execution Contact by Id, source_operation: 'openapi/_original/hilos-openapi-original.yml#Get Flow Execution Contact'}
+  - {name: get_flow_execution, description: Get Flow Execution, source_operation: 'openapi/_original/hilos-openapi-original.yml#Get Flow Execution'}
+  - {name: create_flow_run, description: Create a Flow Execution, source_operation: 'openapi/_original/hilos-openapi-original.yml#Create a Flow Execution'}
+  - {name: list_inbox_conversation, description: List Conversations, source_operation: 'openapi/_original/hilos-openapi-original.yml#List Conversations'}
+  - {name: patch_inbox_conversation_update, description: Partially Update a Conversation, source_operation: 'openapi/_original/hilos-openapi-original.yml#Partially update a Conversation'}
+  - {name: update_inbox_conversation_update, description: Update a conversation, source_operation: 'openapi/_original/hilos-openapi-original.yml#Update a Conversation'}
+crosswalk: mcp/hilos-tool-crosswalk.yml
+evidence:
+- {url: 'https://hilos-40.mintlify.app/mcp', status: 200, method: 'POST tools/list', tools_returned: 3}
+- {url: 'https://hilos-40.mintlify.app/.well-known/mcp.json', status: 200}
+- {url: 'https://hilos-40.mintlify.app/.well-known/oauth-protected-resource', status: 404}
+- {url: 'https://hilos-40.mintlify.app/.well-known/oauth-authorization-server', status: 404}

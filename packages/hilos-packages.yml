@@ -1,0 +1,37 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry search, pypi.org/pypi/hilos/json, api.github.com org/user lookup, and the Hilos
+  developer documentation at https://hilos.io/docs/developer/getting-started/auth
+package_count: 0
+official_package_count: 0
+packages: []
+note: >-
+  Hilos publishes no first-party client libraries in any public registry. The developer docs describe
+  only raw HTTP against https://api.hilos.io/api/ with an `Authorization: Token <key>` header (the auth
+  page illustrates the call with HTTPie, not an SDK), and the docs navigation carries no SDK or
+  libraries section.
+registries_checked:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=hilos
+  result: no first-party package
+  note: >-
+    `hilos-agent` (npm, v0.7.0, published 2026-07-26) is a DIFFERENT company — a coding-agent CLI from
+    hilos.sh / github.com/pablostanley/hilos. It is not Hilos.io and is deliberately excluded.
+- registry: pypi
+  query: https://pypi.org/pypi/hilos/json
+  result: 404 Not Found
+- registry: github
+  query: https://api.github.com/orgs/hilos-io
+  result: 404 Not Found
+  note: No public Hilos GitHub organization exists, so no source-distributed SDK either.
+- registry: rubygems
+  result: not-checked
+  note: No Ruby SDK is referenced anywhere in the docs; nothing to look up.
+- registry: packagist
+  result: not-checked
+  note: No PHP SDK is referenced anywhere in the docs; nothing to look up.
+sdk_pointer_emitted: false
+sdk_pointer_reason: >-
+  No official SDK was found, so no `type: SDKs` pointer is wired. An honest zero — the sdk_count checks
+  should not fire for this provider.

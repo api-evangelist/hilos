@@ -1,0 +1,693 @@
+{
+  "item": [
+    {
+      "id": "7a38cb16-fde2-40dd-9795-5165404f784f",
+      "name": "Conversation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60a69458-b58f-4b52-a930-285cc040722c",
+          "name": "List Conversations",
+          "request": {
+            "name": "List Conversations",
+            "description": {
+              "content": "Lists Conversations. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "inbox",
+                "conversation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contact",
+                  "value": "<uuid>",
+                  "description": "A Contact Id to filter the Conversations and only get those from that Contact."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b9550a82-b49f-4cce-ae81-0399459b5093",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "inbox",
+                    "conversation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contact",
+                      "value": "a3ff7ee5-0c11-49e2-a0d6-7e316626f7b1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\",\n  \"results\": [\n    {\n      \"assigned\": [\n        {\n          \"account\": 3840,\n          \"date_joined\": \"2012-10-21T21:55:28.758Z\",\n          \"email\": \"Qdk@YXngmrtkOrHicxwMVqqBNZqi.rsrb\",\n          \"first_name\": \"string\",\n          \"id\": 6872,\n          \"last_name\": \"string\",\n          \"profile_image\": \"http://xemAScmbKbLzbNPhTUFxGqxaai.geT+8l6ur1ow.TeTtL\"\n        },\n        {\n          \"account\": 6061,\n          \"date_joined\": \"1968-04-25T11:47:35.193Z\",\n          \"email\": \"c9bB8@cyJ.qhzk\",\n          \"first_name\": \"string\",\n          \"id\": 4515,\n          \"last_name\": \"string\",\n          \"profile_image\": \"http://BYxoNWZVAzk.twiuNK12257,2s,sEHLjoVyim8T7+nW5o86DTM6H9ggU\"\n        }\n      ],\n      \"contact\": \"685f9cdc-d749-dd3b-5d89-6ac95c1153f2\",\n      \"created_on\": \"1979-08-22T22:29:48.475Z\",\n      \"first_message\": {\n        \"accepted_on\": \"2018-06-19T20:33:25.938Z\",\n        \"contact\": \"string\",\n        \"content\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"content_type\": \"string\",\n        \"delivered_on\": \"1968-08-18T03:05:15.167Z\",\n        \"direction\": \"string\",\n        \"failed_attempts\": 9420,\n        \"failed_on\": \"1953-02-11T21:38:35.942Z\",\n        \"from_number\": \"string\",\n        \"id\": \"string\",\n        \"is_deleted\": true,\n        \"provider_error_code\": \"string\",\n        \"provider_error_message\": \"string\",\n        \"provider_id\": \"string\",\n        \"queued_on\": \"1992-09-30T00:48:52.361Z\",\n        \"read_on\": \"1960-03-25T22:21:04.395Z\",\n        \"sent_by\": {\n          \"id\": 6194,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"email\": \"1VfFBYREhJ8DS@OSZ.lgs\",\n          \"profile_image\": \"http://VzOvoAzHs.ehvTeKnQmYEu30scooR,htt2HLVUV4uO+lgm+LViK3i.,F957m8lZLkQ4Co9\",\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sent_on\": \"1947-01-28T04:59:34.023Z\",\n        \"source\": \"BROADCAST\",\n        \"status\": \"delivered\",\n        \"timestamp\": \"2007-02-03T10:59:30.700Z\",\n        \"to_number\": \"string\",\n        \"whatsapp_template\": \"27b0a8e5-ce73-1fd2-cedd-70b868a4ef61\",\n        \"body\": \"string\",\n        \"content_url\": \"https://vnJZkPvbRbrMbMxfDuJjGRDK.npsru52Aw+Jm,.ZJwSYEUfsLQGAgOZUTqjmsFsAsU\",\n        \"msg_type\": \"unsupported\"\n      },\n      \"id\": \"string\",\n      \"source\": \"API\",\n      \"status\": \"NEW\",\n      \"tags\": [\n        {\n          \"id\": 3388,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 2750,\n          \"name\": \"string\"\n        }\n      ],\n      \"assigned_team\": 8911,\n      \"channel\": 6519\n    },\n    {\n      \"assigned\": [\n        {\n          \"account\": 4221,\n          \"date_joined\": \"2019-08-03T07:48:44.805Z\",\n          \"email\": \"W-Avk@YygOiDBXbQZGRmLHDpH.slvb\",\n          \"first_name\": \"string\",\n          \"id\": 989,\n          \"last_name\": \"string\",\n          \"profile_image\": \"http://BsjuQYSfIzoDoTdeysaXNsS.dxmcWGDABzth8YabPWkqo4iqlLgr..MjFTfQ9\"\n        },\n        {\n          \"account\": 8579,\n          \"date_joined\": \"1996-02-25T00:19:45.333Z\",\n          \"email\": \"vSaTRve@toRSlGWZYlnbybdcYjIKqcFF.gwll\",\n          \"first_name\": \"string\",\n          \"id\": 7593,\n          \"last_name\": \"string\",\n          \"profile_image\": \"http://KD.mcbeOeqD9f4Rfsb-EObolx\"\n        }\n      ],\n      \"contact\": \"4a869616-6fbf-5702-1bb5-3eaeebd0a8d6\",\n      \"created_on\": \"1992-04-24T06:29:08.478Z\",\n      \"first_message\": {\n        \"accepted_on\": \"1948-05-07T15:18:59.789Z\",\n        \"contact\": \"string\",\n        \"content\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"content_type\": \"string\",\n        \"delivered_on\": \"2004-10-24T04:59:37.571Z\",\n        \"direction\": \"string\",\n        \"failed_attempts\": 1123,\n        \"failed_on\": \"2007-02-04T03:55:14.435Z\",\n        \"from_number\": \"string\",\n        \"id\": \"string\",\n        \"is_deleted\": false,\n        \"provider_error_code\": \"string\",\n        \"provider_error_message\": \"string\",\n        \"provider_id\": \"string\",\n        \"queued_on\": \"2017-10-23T11:03:15.898Z\",\n        \"read_on\": \"1974-10-27T15:55:38.972Z\",\n        \"sent_by\": {\n          \"id\": 8263,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"email\": \"UQ8KM6u2@hePQgoVAoDAusjgeUKlyChQNInZudCYg.ra\",\n          \"profile_image\": \"https://ruhXjfzhGnhKCaDkEN.fdnqrqxNoykDahepyVLBKfG-B39AFhiq2\",\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sent_on\": \"1994-04-07T15:17:36.512Z\",\n        \"source\": \"AUTO_RESPONSE\",\n        \"status\": \"received\",\n        \"timestamp\": \"2005-01-22T05:13:57.590Z\",\n        \"to_number\": \"string\",\n        \"whatsapp_template\": \"9654e945-7556-380f-9cf8-1f0fc0d630ce\",\n        \"body\": \"string\",\n        \"content_url\": \"http://DOSbewvJQfithknBSftMfGDiQBt.wupAYXJGQpJrMYrWDBAG9qmLX.MCx5JuOFjU5\",\n        \"msg_type\": \"voice\"\n      },\n      \"id\": \"string\",\n      \"source\": \"FLOW\",\n      \"status\": \"IN_PROGRESS\",\n      \"tags\": [\n        {\n          \"id\": 1834,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 2373,\n          \"name\": \"string\"\n        }\n      ],\n      \"assigned_team\": 8328,\n      \"channel\": 7679\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faf7800f-a1d1-4d36-9d68-e1005809a2e8",
+          "name": "Partially Update a Conversation",
+          "request": {
+            "name": "Partially Update a Conversation",
+            "description": {
+              "content": "Partially update a Conversation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "inbox",
+                "conversation",
+                ":id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "The UUID of the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "contact",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned",
+                  "value": "{\"id\":\"<integer>\"}",
+                  "description": "The Users assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned",
+                  "value": "{\"id\":\"<integer>\"}",
+                  "description": "The Users assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}",
+                  "description": "The Tags assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}",
+                  "description": "The Tags assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned_team",
+                  "value": "<integer>",
+                  "description": "The ID of the Team assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a832a58-0ce0-4431-b1d1-a2f8f271d022",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "inbox",
+                    "conversation",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contact",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Users assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned",
+                      "value": "{\"id\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Users assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned",
+                      "value": "{\"id\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Tags assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Tags assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The ID of the Team assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned_team",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "channel",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned\": [\n    {\n      \"id\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"contact\": \"436cdbe9-3047-08e2-f127-d15babff2486\",\n  \"created_on\": \"1946-10-28T17:48:15.933Z\",\n  \"id\": \"string\",\n  \"source\": \"BROADCAST\",\n  \"status\": \"<string>\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 4391\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 8558\n    }\n  ],\n  \"assigned_team\": 5190,\n  \"channel\": 3683\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eee20528-93ca-451b-81b5-65302974c220",
+          "name": "Update a conversation",
+          "request": {
+            "name": "Update a conversation",
+            "description": {
+              "content": "Update a Conversation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "inbox",
+                "conversation",
+                ":id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "assigned",
+                  "value": "{\"id\":\"<integer>\"}",
+                  "description": "(Required) The Users assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned",
+                  "value": "{\"id\":\"<integer>\"}",
+                  "description": "(Required) The Users assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "contact",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The UUID of the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}",
+                  "description": "The Tags assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}",
+                  "description": "The Tags assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned_team",
+                  "value": "<integer>",
+                  "description": "The ID of the Team assigned to the Conversation."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c579fb21-1493-430e-ad91-e3440c672460",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "inbox",
+                    "conversation",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Users assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned",
+                      "value": "{\"id\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Users assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned",
+                      "value": "{\"id\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "contact",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Tags assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Tags assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The ID of the Team assigned to the Conversation.",
+                        "type": "text/plain"
+                      },
+                      "key": "assigned_team",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "channel",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned\": [\n    {\n      \"id\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"contact\": \"<uuid>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 3311\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 952\n    }\n  ],\n  \"created_on\": \"1981-02-06T13:50:29.686Z\",\n  \"source\": \"API\",\n  \"assigned_team\": \"<integer>\",\n  \"channel\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hilos.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e13ac5c5-5562-438d-832a-4b3a23cc1366",
+    "name": "Hilos Contact Conversation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.\n\nTo use this token, send with every request an `Authorization: Token <your token>` header.\n\nProduction API server is located at api.hilos.io using HTTPS.\n\nNo versioning info is required for now.",
+      "type": "text/plain"
+    }
+  }
+}

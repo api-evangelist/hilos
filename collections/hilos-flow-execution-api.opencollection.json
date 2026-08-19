@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hilos Contact Flow Execution API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flow Execution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Flow Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hilos.io/api/flow-execution",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query",
+                "description": "A Flow Id to filter the Flow Executions and only get those from that Flow."
+              },
+              {
+                "name": "flow_version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "You can search with the `status`, `created_by__email` fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists Flow Executions. "
+        },
+        {
+          "info": {
+            "name": "Get Flow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hilos.io/api/flow-execution/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A Flow Execution Id to retrive."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Flow Execution by Id."
+        },
+        {
+          "info": {
+            "name": "Create a Flow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hilos.io/api/flow/:id/run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A Flow Id to create a Flow Execution."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Flow Execution of a Flow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

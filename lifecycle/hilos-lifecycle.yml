@@ -1,16 +1,33 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: https://hilos-40.mintlify.app/docs/developer + openapi info
+source: >-
+  https://hilos.io/docs/developer/getting-started/* + openapi info + live probes of status.hilos.io,
+  hilos.io/status, hilos.io/changelog, hilos.io/roadmap
 versioning:
   scheme: unversioned
   current: null
-  docs: https://hilos-40.mintlify.app/docs/developer/getting-started/auth
-  note: OpenAPI info states "No versioning info is required for now." Endpoints live under /api/ with
-    no version segment.
+  docs: https://hilos.io/docs/developer/getting-started/auth
+  note: >-
+    OpenAPI info states "No versioning info is required for now." Endpoints live under /api/ with no
+    version segment, so there is no way for a client to pin a contract.
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No published deprecation/sunset policy found.
+  note: No published deprecation or Sunset/Deprecation (RFC 8594) policy found.
 status_page: null
+status_page_probes:
+- {url: 'https://status.hilos.io', status: null, note: 'DNS does not resolve (curl exit, no HTTP response)'}
+- {url: 'https://hilos.io/status', status: 404}
 sla: null
+changelog: null
+changelog_probes:
+- {url: 'https://hilos.io/changelog', status: 404}
+- {url: 'https://hilos-40.mintlify.app/llms.txt', status: 200, note: 'no changelog/release-notes page in the docs index'}
+roadmap: null
+roadmap_probes:
+- {url: 'https://hilos.io/roadmap', status: 404}
 deprecated_operations: []
+note: >-
+  Operational transparency is the weakest part of this provider's posture: no status page, no changelog,
+  no roadmap, no SLA, no deprecation policy, and an unversioned API. No StatusPage or Deprecation pointer
+  is wired, because neither surface exists.

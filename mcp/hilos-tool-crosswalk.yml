@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Live tools/list from https://hilos-40.mintlify.app/mcp (3 tools, anonymous, HTTP 200) bound against the
+  19 operationIds in openapi/_original/hilos-openapi-original.yml.
+summary: >-
+  The MCP surface and the REST surface do not overlap at all. Hilos's only reachable MCP server is the
+  Mintlify documentation server: it searches and reads docs. Every one of the 19 REST operations —
+  contacts, conversations, WhatsApp templates, flow executions, users — has no tool behind it. This is a
+  total divergence, and it is the single most useful thing this crosswalk records: an agent can learn
+  about Hilos over MCP but cannot act on Hilos over MCP.
+surfaces:
+  openapi:
+    files:
+    - openapi/hilos-contact-api-openapi.yml
+    - openapi/hilos-conversation-api-openapi.yml
+    - openapi/hilos-flow-execution-api-openapi.yml
+    - openapi/hilos-flow-execution-contact-api-openapi.yml
+    - openapi/hilos-user-api-openapi.yml
+    - openapi/hilos-whatsapp-api-openapi.yml
+    original: openapi/_original/hilos-openapi-original.yml
+    base_url: https://api.hilos.io
+    auth: 'apiKey header Authorization: Token <key>'
+    gated: false
+  graphql:
+    endpoint: null
+    note: Hilos publishes no GraphQL surface.
+  mcp:
+    url: https://hilos-40.mintlify.app/mcp
+    transport: http
+    auth: none
+    gated: false
+    note: tools/list answered anonymously; input schemas below are the real published schemas.
+crosswalk: []
+mcp_only:
+- tool: search_hilos_docs
+  reason: >-
+    Documentation search. Backed by the Mintlify docs index, not by any Hilos REST operation. No
+    equivalent exists in the Hilos API.
+- tool: query_docs_filesystem_hilos_docs
+  reason: >-
+    Reads documentation pages as a filesystem (head/cat). Backed by the docs tree, not the Hilos API.
+- tool: submit_feedback
+  reason: >-
+    Writes documentation feedback into Mintlify. Not a Hilos API capability and not addressable over
+    api.hilos.io.
+rest_only:
+- capability: Contacts
+  operations:
+  - List Contacts
+  - Create or Update Contact
+  - Get Contact
+  - Update Contact
+  - Partial Update Contact
+  - Delete Contact Operation ID
+- capability: Conversations
+  operations:
+  - List Conversations
+  - Update a Conversation
+  - Partially update a Conversation
+- capability: WhatsApp templates
+  operations:
+  - List WhatsApp Templates
+  - Get WhatsApp Template
+  - Send a WhatsApp Template Message
+  - Delete WhatsApp Template
+- capability: Flow executions
+  operations:
+  - List Flow Execution
+  - Get Flow Execution
+  - Create a Flow Execution
+  - List Flow Execution Contact
+  - Get Flow Execution Contact
+- capability: Users
+  operations:
+  - List Users
+coverage:
+  tools_named: 3
+  tools_bound_to_rest: 0
+  mcp_only: 3
+  rest_operations_total: 19
+  rest_operations_with_a_tool: 0
+  overlap_ratio: 0.0
+note: >-
+  crosswalk[] is empty on purpose: there is not one honest tool-to-operation binding to make. Any row
+  here would be an invention. If Hilos ever ships an API MCP server, the derived candidate tool list in
+  mcp/hilos-mcp.yml (candidate_tools) is the one-to-one map that would populate this section.

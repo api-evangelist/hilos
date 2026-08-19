@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hilos Contact User API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hilos.io/api/account-member",
+            "params": [
+              {
+                "name": "email__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email__iendswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email__iexact",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email__istartswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name__iendswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name__iexact",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name__istartswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name__iendswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name__iexact",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name__istartswith",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "Which field to use when ordering the results."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "You can search users with the `email`, `first_name` or `last_name` fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists Users. "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

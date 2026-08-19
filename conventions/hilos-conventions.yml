@@ -1,30 +1,55 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: https://hilos-40.mintlify.app/docs/developer/getting-started (auth, errors, pagination)
+source: https://hilos.io/docs/developer/getting-started/ (auth, pagination, errors, test-request)
 authentication:
   style: api-key
   header: Authorization
   format: Token <key>
   key_management: https://app.hilos.io/dev/api-keys
+  docs: https://hilos.io/docs/developer/getting-started/auth
   ref: authentication/hilos-authentication.yml
 idempotency:
   supported: false
-  note: 'No idempotency-key header documented. Note: POST /api/contact is upsert-by-phone (creates or
-    partial-updates the matching contact), which is naturally idempotent on phone but is not a request-idempotency-key
-    contract.'
+  header: null
+  docs: null
+  note: >-
+    No idempotency-key header is documented and none appears in the OpenAPI. POST /api/contact is
+    upsert-by-phone (it creates, or partially updates the contact matching that phone number), which
+    makes contact creation naturally safe to repeat — but that is resource semantics, not a
+    request-idempotency-key contract, and it does not protect the send-template or run-flow operations.
+    No `Idempotency` pointer is wired for this provider.
 pagination:
   style: page-number
   params:
   - page
   - page_size
+  docs: https://hilos.io/docs/developer/getting-started/pagination
   note: page selects the page; page_size sets items per page.
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  note: >-
+    Contacts carry arbitrary custom properties (name/value pairs, case sensitive) plus tags; documented
+    in the Zapier integration and the contact endpoints.
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation header documented.
 versioning:
   style: unversioned
   ref: lifecycle/hilos-lifecycle.yml
 error_envelope:
   format: plain-json
+  problem_json: false
   ref: errors/hilos-problem-types.yml
+  docs: https://hilos.io/docs/developer/getting-started/errors
 rate_limits:
   documented: false
-  note: No public rate-limit documentation found.
+  headers: []
+  ref: rate-limits/hilos-rate-limits.yml
+  note: No API rate limits, no 429 in the published error table, and no rate-limit response headers.
+events:
+  first_party_webhooks: false
+  ref: asyncapi/hilos-events.yml
+  note: Events are only reachable through the Zapier partner integration.
 base_url: https://api.hilos.io/api/

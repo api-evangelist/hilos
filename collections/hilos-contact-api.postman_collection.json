@@ -1,0 +1,1328 @@
+{
+  "item": [
+    {
+      "id": "8ec09dbf-6891-4cb9-9aa4-1d10b9e7a34f",
+      "name": "Contact",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e017be08-5261-43cc-a7d8-0a1e2ad85f1d",
+          "name": "List contacts",
+          "request": {
+            "name": "List contacts",
+            "description": {
+              "content": "Lists contacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "You can search with the base `phone`, `first_name`, `last_name`, `email` and `external_url` fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "216044df-17b4-4148-a397-75b6e6674593",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "erik@hilos.io"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\",\n  \"results\": [\n    {\n      \"canonical_phone\": \"string\",\n      \"created_by\": 8049,\n      \"created_on\": \"2018-01-04T10:36:51.852Z\",\n      \"id\": \"string\",\n      \"last_updated_on\": \"1978-06-09T12:49:26.574Z\",\n      \"phone\": \"string\",\n      \"source\": \"string\",\n      \"tags\": [\n        {\n          \"id\": 8646,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 7048,\n          \"name\": \"string\"\n        }\n      ],\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"XAptiR7A-2n@gRhZvQ.tit\",\n      \"meta\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"external_url\": \"https://kpfRiZoyDGWXuGZZQSC.iloi6m6174decd9nWRMBedzAWbgZFZkcapvliDQcMMTUjwK9qMTXf4Wcv91Je.e\"\n    },\n    {\n      \"canonical_phone\": \"string\",\n      \"created_by\": 3772,\n      \"created_on\": \"2000-11-26T00:36:20.516Z\",\n      \"id\": \"string\",\n      \"last_updated_on\": \"2026-01-11T02:34:14.895Z\",\n      \"phone\": \"string\",\n      \"source\": \"string\",\n      \"tags\": [\n        {\n          \"id\": 1842,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 3908,\n          \"name\": \"string\"\n        }\n      ],\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"1LY2nAOAbUDrh@WtnRUYLbpVptTJEiPDBXTvEeZwVMeHG.bhw\",\n      \"meta\": {\n        \"key_0\": {}\n      },\n      \"external_url\": \"http://TVDZgWWhztidzjPMBeVgQHFcjJk.tzpo+3tGiWzBJh3Nl8jLpo0+zI5eDr+V2o+EpqguilBL8fliXN7soyj0XmRU3A\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfc87660-19a1-40e0-87e8-b85b69ae6c98",
+          "name": "Create a contact",
+          "request": {
+            "name": "Create a contact",
+            "description": {
+              "content": "When you POST a new Contact, we'll first check if another contact exists with the same phone. If it does, we'll do a partial update to the existing contact with this new information. We do this so you don't end up with duplicate contacts in your account. \n\nYou can set arbitrary attributes for a contact in the meta object, using `meta={custom_property_1: 'some value', another_property: 'another value ...', ...}`. We parse all these attributes as strings for now. \n\n We append the received `meta`, `tags` and `default_assignees` properties with the contact current ones, if you want to delete some key inside the `meta` or a `tags` you have to use the `overwrite_meta` or `overwrite_tags` attributes in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_3",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_url",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "website"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_tags",
+                  "value": "false",
+                  "description": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_default_assignees",
+                  "value": "false",
+                  "description": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_meta",
+                  "value": "false",
+                  "description": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e309536-f448-4db7-a6cb-ee58cf2d0567",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source",
+                      "value": "website"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "created_on",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_tags",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_default_assignees",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_meta",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"canonical_phone\": \"string\",\n  \"created_by\": 4902,\n  \"default_assignees\": [\n    {\n      \"account\": 3326,\n      \"date_joined\": \"1972-01-01T22:21:09.659Z\",\n      \"email\": \"Tr75@lBqegE.xbc\",\n      \"first_name\": \"string\",\n      \"id\": 5945,\n      \"last_name\": \"string\",\n      \"profile_image\": \"https://Rjy.svuedJcP3YVBbwy8IOeXpFZZb7nTS0wbqr142NHK49+vEieXsa3W0MyJ\"\n    },\n    {\n      \"account\": 6088,\n      \"date_joined\": \"2016-06-04T18:21:45.484Z\",\n      \"email\": \"RbCDL@PdfsigYa.ydn\",\n      \"first_name\": \"string\",\n      \"id\": 3895,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://ZyIliceobowSBwCZGyVKW.tfnvNe7plHYP3cfJfscu65V2AvxkhB+d\"\n    }\n  ],\n  \"default_conversation_url\": \"string\",\n  \"id\": \"string\",\n  \"inbox_contacts\": [\n    {\n      \"channel\": 4760,\n      \"url\": \"string\",\n      \"id\": \"68ecc289-d1d7-0006-22d0-306827d6cfdc\"\n    },\n    {\n      \"channel\": 9073,\n      \"url\": \"string\",\n      \"id\": \"11f73e60-78d5-1727-ff42-707a327aec1e\"\n    }\n  ],\n  \"last_updated_on\": \"2014-08-09T16:11:05.380Z\",\n  \"phone\": \"string\",\n  \"source\": \"string\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 720\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 4213\n    }\n  ],\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"vyyNd3jF@NmIthiwnDUnCSvYfgAsEMzRFAtMz.zie\",\n  \"meta\": {\n    \"key_0\": {}\n  },\n  \"external_url\": \"https://n.hnscytmXdmHEmvZYcM4CZUSO6Fl\",\n  \"created_on\": \"1947-05-01T20:22:52.330Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccdcdafa-95e1-4260-bc14-1ac072aceb4f",
+          "name": "Delete Contact",
+          "request": {
+            "name": "Delete Contact",
+            "description": {
+              "content": "Deleting a contact won't delete its history nor its sent messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3da6874d-148c-48fb-ab37-32d72e87ef0a",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60c6b432-55a3-469b-a26d-44ed92529c05",
+          "name": "Get Contact",
+          "request": {
+            "name": "Get Contact",
+            "description": {
+              "content": "Gets a Contact by Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "25655707-efeb-41b4-88f0-07de4b27965e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"canonical_phone\": \"string\",\n  \"created_by\": 448,\n  \"default_assignees\": [\n    {\n      \"account\": 6410,\n      \"date_joined\": \"1986-06-09T17:30:17.760Z\",\n      \"email\": \"hQ-izCpoBB@XzuJu.jxd\",\n      \"first_name\": \"string\",\n      \"id\": 865,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://QiexMZhzaMEdwpRxOEZnsOpBVXfKcyBd.xttB.WgUevlgHEhtaZyFm+mIttFnZR,nR9d\"\n    },\n    {\n      \"account\": 8814,\n      \"date_joined\": \"1959-03-18T16:23:39.307Z\",\n      \"email\": \"SFtUdDaHrfkOja@sxviaBFCOOBC.yc\",\n      \"first_name\": \"string\",\n      \"id\": 516,\n      \"last_name\": \"string\",\n      \"profile_image\": \"https://PwrnywoqiqRAeSQIOkHXbccauTojFPDa.fwwy77cx9DQNfB,j\"\n    }\n  ],\n  \"default_conversation_url\": \"string\",\n  \"id\": \"string\",\n  \"inbox_contacts\": [\n    {\n      \"channel\": 9712,\n      \"url\": \"string\",\n      \"id\": \"6ed9ab3c-89f0-7045-993d-beab153e3d22\"\n    },\n    {\n      \"channel\": 6125,\n      \"url\": \"string\",\n      \"id\": \"587a27d4-af34-7ead-c57f-53c5061ee240\"\n    }\n  ],\n  \"last_updated_on\": \"1965-02-18T11:29:09.538Z\",\n  \"notes\": [\n    {\n      \"contact\": \"8829b2f4-1e09-0f96-56ef-601626b4514d\",\n      \"created_on\": \"1976-07-28T22:59:42.270Z\",\n      \"id\": 7095,\n      \"notes\": \"string\",\n      \"created_by\": {\n        \"id\": 9882,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"I-b8mH1qc1S@EjxfCDqjftUXbbfEXUqSDJq.whyp\",\n        \"profile_image\": \"http://maiBIAsSKaYaKXYQc.eprlFuCkxJIsR5Xsg6Y1zVLs4-o-Rjimz1v5clzpTJw\",\n        \"role\": \"ADMIN\"\n      }\n    },\n    {\n      \"contact\": \"a2f2ea05-0e0c-d8e7-8bc1-f2b96b79c9f5\",\n      \"created_on\": \"1980-01-11T14:24:00.248Z\",\n      \"id\": 8399,\n      \"notes\": \"string\",\n      \"created_by\": {\n        \"id\": 4628,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"taXRyEhg6l@nYXZIrvEyGyJHKOdvZyJaTWOfPttOVVvQ.fgoi\",\n        \"profile_image\": \"https://NvnuGQWEOGvbncUImGlJvvlkQ.kiyM3LW4K\",\n        \"role\": \"ADMIN\"\n      }\n    }\n  ],\n  \"phone\": \"string\",\n  \"source\": \"string\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 9102\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 4617\n    }\n  ],\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"9oTHS0N3HnOpwQ8@hpGUvLo.cftr\",\n  \"meta\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"external_url\": \"http://ZbXwqzkpItwCPMFczXFDxHUZ.foyGfscVdgTUGbew.kGOwQSW9Xv,e+xQ5WlH\",\n  \"is_deleted\": false,\n  \"created_on\": \"1982-08-07T01:32:35.951Z\",\n  \"contact_import\": \"a3f7f693-0297-71c9-4622-0004b8bb9b0c\",\n  \"default_channel\": 7476\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aeefc29-1f9b-451f-b341-dea98a6e69ac",
+          "name": "Partially Update Contact",
+          "request": {
+            "name": "Partially Update Contact",
+            "description": {
+              "content": "Update a Contact sending only the properties you want to update. \n\n If you send the `meta` or `tags` the contact will have those properties appended with the contact current ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_url",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "website"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_tags",
+                  "value": "false",
+                  "description": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_default_assignees",
+                  "value": "false",
+                  "description": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_meta",
+                  "value": "false",
+                  "description": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d679ca1b-da98-4ef7-a7f8-f356e7b9ee4a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source",
+                      "value": "website"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "created_on",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_tags",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_default_assignees",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_meta",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"canonical_phone\": \"string\",\n  \"created_by\": 8887,\n  \"default_assignees\": [\n    {\n      \"account\": 2810,\n      \"date_joined\": \"2009-07-10T04:19:25.954Z\",\n      \"email\": \"rbqR3MHxb4wfo@dYlGRWymlRttavFUduokPwGecLnB.rq\",\n      \"first_name\": \"string\",\n      \"id\": 7671,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://YBHl.gbH7S+jva,Y-1nOZDcwg.-QWKemzDAI+TbpM\"\n    },\n    {\n      \"account\": 127,\n      \"date_joined\": \"1976-05-18T12:23:18.788Z\",\n      \"email\": \"ENS@kiVpGpvRvuKUIIUPUzCDWOAnA.eaf\",\n      \"first_name\": \"string\",\n      \"id\": 4353,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://ASgfySIlJznTH.xnidWMR5pcQHwh\"\n    }\n  ],\n  \"default_conversation_url\": \"string\",\n  \"id\": \"string\",\n  \"inbox_contacts\": [\n    {\n      \"channel\": 5762,\n      \"url\": \"string\",\n      \"id\": \"b2ae74e3-e0b4-85de-91d5-9446543c3e09\"\n    },\n    {\n      \"channel\": 7045,\n      \"url\": \"string\",\n      \"id\": \"40553565-0821-0dca-39bd-4652461ac398\"\n    }\n  ],\n  \"last_updated_on\": \"2005-10-10T19:36:45.350Z\",\n  \"phone\": \"string\",\n  \"source\": \"string\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 4757\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 663\n    }\n  ],\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"ltY@enNXuaxlhtAsUQZclRI.ly\",\n  \"meta\": {\n    \"key_0\": {}\n  },\n  \"external_url\": \"http://cPARknsdSyVZTgOMQ.buyH6vCE1n8t6ahU-SI,pqF7xAmDhr5M+BEqVzFP3tACcvTluovbIb\",\n  \"created_on\": \"1974-12-24T07:32:31.888Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b316e5bd-470d-4e4f-89c9-caedb4fd5faa",
+          "name": "Update Contact",
+          "request": {
+            "name": "Update Contact",
+            "description": {
+              "content": "Update a Contact. \n\n If you send a empty `meta` or `tags` the contact will have those properties removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "contact",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_url",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "website"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "{\"name\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_assignees",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_tags",
+                  "value": "false",
+                  "description": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_default_assignees",
+                  "value": "false",
+                  "description": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite_meta",
+                  "value": "false",
+                  "description": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30203cff-2ef1-4e1b-b7ce-149277d55434",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contact",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source",
+                      "value": "website"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "created_on",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "tags",
+                      "value": "{\"name\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_assignees",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_tags",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_default_assignees",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite_meta",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"canonical_phone\": \"string\",\n  \"created_by\": 8887,\n  \"default_assignees\": [\n    {\n      \"account\": 2810,\n      \"date_joined\": \"2009-07-10T04:19:25.954Z\",\n      \"email\": \"rbqR3MHxb4wfo@dYlGRWymlRttavFUduokPwGecLnB.rq\",\n      \"first_name\": \"string\",\n      \"id\": 7671,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://YBHl.gbH7S+jva,Y-1nOZDcwg.-QWKemzDAI+TbpM\"\n    },\n    {\n      \"account\": 127,\n      \"date_joined\": \"1976-05-18T12:23:18.788Z\",\n      \"email\": \"ENS@kiVpGpvRvuKUIIUPUzCDWOAnA.eaf\",\n      \"first_name\": \"string\",\n      \"id\": 4353,\n      \"last_name\": \"string\",\n      \"profile_image\": \"http://ASgfySIlJznTH.xnidWMR5pcQHwh\"\n    }\n  ],\n  \"default_conversation_url\": \"string\",\n  \"id\": \"string\",\n  \"inbox_contacts\": [\n    {\n      \"channel\": 5762,\n      \"url\": \"string\",\n      \"id\": \"b2ae74e3-e0b4-85de-91d5-9446543c3e09\"\n    },\n    {\n      \"channel\": 7045,\n      \"url\": \"string\",\n      \"id\": \"40553565-0821-0dca-39bd-4652461ac398\"\n    }\n  ],\n  \"last_updated_on\": \"2005-10-10T19:36:45.350Z\",\n  \"phone\": \"string\",\n  \"source\": \"string\",\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": 4757\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": 663\n    }\n  ],\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"ltY@enNXuaxlhtAsUQZclRI.ly\",\n  \"meta\": {\n    \"key_0\": {}\n  },\n  \"external_url\": \"http://cPARknsdSyVZTgOMQ.buyH6vCE1n8t6ahU-SI,pqF7xAmDhr5M+BEqVzFP3tACcvTluovbIb\",\n  \"created_on\": \"1974-12-24T07:32:31.888Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hilos.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64bbab35-034d-4723-9c8f-2684395d62c6",
+    "name": "Hilos Contact API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.\n\nTo use this token, send with every request an `Authorization: Token <your token>` header.\n\nProduction API server is located at api.hilos.io using HTTPS.\n\nNo versioning info is required for now.",
+      "type": "text/plain"
+    }
+  }
+}

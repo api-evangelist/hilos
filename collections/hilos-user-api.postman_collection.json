@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "f5e0130d-a536-41c2-b380-2e1d6d71b2e7",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40763e86-c7f7-443f-8b19-bdfec78f8628",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {
+              "content": "Lists Users. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "account-member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email__icontains",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email__iendswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email__iexact",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email__isnull",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email__istartswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name__icontains",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name__iendswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name__iexact",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name__isnull",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name__istartswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name__icontains",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name__iendswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name__iexact",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name__isnull",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name__istartswith",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>",
+                  "description": "Which field to use when ordering the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "You can search users with the `email`, `first_name` or `last_name` fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "65c17e75-1e24-4c27-a8f0-0776a1fc32ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account-member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email__iendswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email__iexact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email__isnull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "email__istartswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_name__iendswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_name__iexact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_name__isnull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "first_name__istartswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name__iendswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name__iexact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name__isnull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "last_name__istartswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "erik@hilos.io"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account\": 3948,\n    \"date_joined\": \"1985-08-30T07:26:34.233Z\",\n    \"email\": \"Q1Xjdu2S@ZMwXMjNpKFUXKIqRIYaQVqTpwmbfD.ortl\",\n    \"first_name\": \"string\",\n    \"id\": 2410,\n    \"last_name\": \"string\",\n    \"profile_image\": \"http://DlnYQBFJnEgWwMXhh.vpjHuyWk,J01ligSFkx+EllmyL0nKMPMJbNbA\",\n    \"teams\": [\n      {\n        \"assignment_strategy\": \"string\",\n        \"id\": 798,\n        \"name\": \"string\"\n      },\n      {\n        \"assignment_strategy\": \"string\",\n        \"id\": 4353,\n        \"name\": \"string\"\n      }\n    ],\n    \"user_permissions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"available_channels\": [\n      {\n        \"channel_id\": \"string\",\n        \"id\": 6133,\n        \"channel_type\": \"VOICE\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1991-06-22T05:47:36.986Z\",\n        \"channel_provider\": \"D360_CLOUD_API\",\n        \"is_sandbox\": false\n      },\n      {\n        \"channel_id\": \"string\",\n        \"id\": 3452,\n        \"channel_type\": \"FB_MESSENGER\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1950-10-09T04:29:12.562Z\",\n        \"channel_provider\": \"TECH_PROVIDER_CLOUD_API\",\n        \"is_sandbox\": true\n      }\n    ],\n    \"role\": \"FINANCE\"\n  },\n  {\n    \"account\": 752,\n    \"date_joined\": \"2006-06-25T10:48:36.140Z\",\n    \"email\": \"aAL7m-QZ2g1EO@keptbLunKImYHl.ydfl\",\n    \"first_name\": \"string\",\n    \"id\": 6438,\n    \"last_name\": \"string\",\n    \"profile_image\": \"https://LQrCOhIwemzwFaYcBzHzGfjrRoirAPg.qpwrNvSBmy\",\n    \"teams\": [\n      {\n        \"assignment_strategy\": \"string\",\n        \"id\": 7659,\n        \"name\": \"string\"\n      },\n      {\n        \"assignment_strategy\": \"string\",\n        \"id\": 4060,\n        \"name\": \"string\"\n      }\n    ],\n    \"user_permissions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"available_channels\": [\n      {\n        \"channel_id\": \"string\",\n        \"id\": 42,\n        \"channel_type\": \"WHATSAPP\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1955-12-02T07:41:14.704Z\",\n        \"channel_provider\": \"D360_CLOUD_API\",\n        \"is_sandbox\": true\n      },\n      {\n        \"channel_id\": \"string\",\n        \"id\": 5624,\n        \"channel_type\": \"WHATSAPP\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1986-04-22T16:41:42.179Z\",\n        \"channel_provider\": \"META_CLOUD_API\",\n        \"is_sandbox\": false\n      }\n    ],\n    \"role\": \"AGENT\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hilos.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e9ed9d77-d53c-4e3a-9555-470c7825effc",
+    "name": "Hilos Contact User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.\n\nTo use this token, send with every request an `Authorization: Token <your token>` header.\n\nProduction API server is located at api.hilos.io using HTTPS.\n\nNo versioning info is required for now.",
+      "type": "text/plain"
+    }
+  }
+}

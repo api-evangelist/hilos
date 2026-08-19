@@ -1,0 +1,75 @@
+generated: '2026-08-13'
+method: searched
+source: https://hilos.io/docs/en/user/using-hilos/integrations/Zapier.md
+spec_type: none
+asyncapi_published: false
+first_party_webhooks: false
+summary: >-
+  Hilos ships NO first-party webhook subscription API and NO AsyncAPI document. There is no
+  /webhook, /webhooks or subscription endpoint in the OpenAPI, no webhook page in the developer
+  documentation, and an MCP search across the whole Hilos docs corpus for "webhook" returns only a
+  page explaining how to paste a Zapier "Catch Hook" URL into a Hilos flow Action step. The provider
+  does have a real, documented event catalog — but it is only reachable through the Zapier partner
+  integration, where Zapier owns the delivery contract, the payload schema and the subscription
+  lifecycle. Captured here so the events are not silently dropped; deliberately NOT wired as
+  `type: Webhooks` or `type: AsyncAPI`, because Hilos publishes neither.
+events:
+- name: Contact Completed a Flow
+  direction: outbound
+  transport: zapier-trigger
+  description: >-
+    Fires when a contact finishes any flow, inbound or outbound. Supplies the completed flow details
+    and the contact's information.
+- name: Contact Joined Inbound Flow
+  direction: outbound
+  transport: zapier-trigger
+  description: Fires on a contact's entry into an inbound flow, with the flow and contact data.
+- name: New Contact
+  direction: outbound
+  transport: zapier-trigger
+  description: Fires each time a new contact is added to Hilos, returning the new contact's details.
+- name: Updated Contact
+  direction: outbound
+  transport: zapier-trigger
+  description: >-
+    Fires when a contact's details change, either manually by a team member or automatically through a
+    flow step; returns the updated contact.
+- name: Deleted a Contact
+  direction: outbound
+  transport: zapier-trigger
+  description: Fires when a contact is deleted, with information about the deleted contact.
+actions:
+- name: Create or Update Contact
+  transport: zapier-action
+  rest_equivalent: Create or Update Contact
+  note: Upsert keyed on phone number; mirrors POST /api/contact.
+- name: Send a WhatsApp Message
+  transport: zapier-action
+  rest_equivalent: Send a WhatsApp Template Message
+  note: Requires an E.164 phone number and an approved template.
+- name: Start a Flow for a Phone Number
+  transport: zapier-action
+  rest_equivalent: Create a Flow Execution
+  note: Outbound flows only; also upserts the contact from the supplied fields.
+- name: Search for a WhatsApp Template
+  transport: zapier-action
+  rest_equivalent: List WhatsApp Templates
+  note: Lookup by template name.
+outbound_http:
+  mechanism: flow Action step ("Connect API")
+  docs: https://hilos.io/docs/en/user/using-hilos/flows/steps/action-step
+  description: >-
+    A flow can call any external HTTP endpoint (GET/POST/PATCH/DELETE, custom headers, query params,
+    JSON/form/multipart/XML/YAML/plain bodies) and branches on success vs non-2xx. This is how Hilos
+    users emit events to their own systems — including to a Zapier Catch Hook — but the destination and
+    payload are configured per flow by the customer, so there is no publishable event contract.
+pointer_policy:
+  asyncapi_pointer_emitted: false
+  webhooks_pointer_emitted: false
+  reason: >-
+    `Webhooks` would assert that Hilos advertises a webhook surface developers can subscribe to. It does
+    not. The event catalog is real but Zapier-mediated, so it is wired as `type: Events` instead.
+evidence:
+- {url: 'https://hilos.io/docs/en/user/using-hilos/integrations/Zapier.md', status: 200}
+- {url: 'https://hilos.io/docs/en/user/using-hilos/flows/steps/action-step.md', status: 200}
+- {url: 'https://hilos-40.mintlify.app/llms.txt', status: 200, note: 'no webhook page in the developer docs index'}

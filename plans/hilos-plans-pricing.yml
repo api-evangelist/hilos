@@ -1,0 +1,25 @@
+generated: '2026-08-13'
+method: searched
+source: https://hilos.io/pricing
+plan_count: 0
+plans: []
+note: >-
+  Hilos no longer publishes a public pricing page. https://hilos.io/pricing returns HTTP 301 to
+  https://hilos.io/signup-ac, a post-acquisition landing page ("Hilos ahora es parte de
+  ActiveCampaign") that carries a free-trial call to action and no tiers, prices, quotas or limits.
+  /plans, /precios and /es/pricing behave the same way (404, or the same redirect). Pricing moved
+  behind the ActiveCampaign signup flow after ActiveCampaign acquired Hilos, so there is nothing
+  machine-readable — or human-readable — left to record here.
+currency: null
+billing_period: null
+public_pricing: false
+gate: signup
+evidence:
+- {url: 'https://hilos.io/pricing', status: 301, redirect: 'https://hilos.io/signup-ac'}
+- {url: 'https://hilos.io/signup-ac', status: 200, note: 'landing page, no tiers or prices'}
+- {url: 'https://hilos.io/es/pricing', status: 200, note: 'redirects to /signup-ac'}
+- {url: 'https://hilos.io/plans', status: 404}
+- {url: 'https://hilos.io/precios', status: 404}
+x-catalog-note: >-
+  The `Pricing` link-property pointer was removed from apis.yml in this pass because the URL it named
+  no longer resolves to a pricing page. Restore it if Hilos (or ActiveCampaign) republishes tiers.

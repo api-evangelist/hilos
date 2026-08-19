@@ -1,0 +1,649 @@
+{
+  "item": [
+    {
+      "id": "76d460ca-6bcb-4508-bcc6-b5ff85c0f545",
+      "name": "WhatsApp",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56cd2396-0799-4d65-ad71-3319a3971774",
+          "name": "List WhatsApp Templates",
+          "request": {
+            "name": "List WhatsApp Templates",
+            "description": {
+              "content": "Lists WhatsApp Templates. You can search with the `name` and `status` fields using the `?seach=my-template-name` query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                "whatsapp",
+                "template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "category__in",
+                  "value": "<string>,<string>",
+                  "description": "Multiple values may be separated by commas."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel__in",
+                  "value": "<integer>,<integer>",
+                  "description": "Multiple values may be separated by commas."
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>",
+                  "description": "Which field to use when ordering the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status__in",
+                  "value": "<string>,<string>",
+                  "description": "Multiple values may be separated by commas."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c502d4ef-97a5-4626-b3f1-853ef1734199",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    "whatsapp",
+                    "template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category__in",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "channel__in",
+                      "value": "<integer>,<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status__in",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\",\n  \"results\": [\n    {\n      \"category\": \"OTP\",\n      \"channel\": {\n        \"channel_id\": \"string\",\n        \"id\": 9488,\n        \"channel_type\": \"EMAIL\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1972-01-10T06:10:57.663Z\",\n        \"channel_provider\": \"META_CLOUD_API\",\n        \"is_sandbox\": true\n      },\n      \"id\": \"64958dda-d832-3464-3f82-5e38dd031cf0\",\n      \"language\": \"pa\",\n      \"name\": \"string\",\n      \"components\": {\n        \"key_0\": {}\n      },\n      \"status\": \"in_appeal\",\n      \"rejected_reason\": \"string\",\n      \"is_deleted\": true\n    },\n    {\n      \"category\": \"TRANSPORTATION_UPDATE\",\n      \"channel\": {\n        \"channel_id\": \"string\",\n        \"id\": 4950,\n        \"channel_type\": \"INSTAGRAM\",\n        \"name\": \"string\",\n        \"status\": \"NEW\",\n        \"created_on\": \"1999-05-09T02:51:29.812Z\",\n        \"channel_provider\": \"TECH_PROVIDER_CLOUD_API\",\n        \"is_sandbox\": false\n      },\n      \"id\": \"f68e74b6-5672-3bb5-3734-323d6a306343\",\n      \"language\": \"id\",\n      \"name\": \"string\",\n      \"components\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"status\": \"disabled\",\n      \"rejected_reason\": \"string\",\n      \"is_deleted\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba7cb3ef-d899-4150-b096-bdc763d0f54c",
+          "name": "Delete WhatsApp Template",
+          "request": {
+            "name": "Delete WhatsApp Template",
+            "description": {
+              "content": "Deletes a WhatsApp Template by Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                "whatsapp",
+                "template",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2c3b0903-881a-459a-b70e-40fff5a6b8bf",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    "whatsapp",
+                    "template",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3071b363-0da2-4526-af8f-76b82215b48e",
+          "name": "Get WhatsApp Template",
+          "request": {
+            "name": "Get WhatsApp Template",
+            "description": {
+              "content": "Gets a WhatsApp Template by Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                "whatsapp",
+                "template",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8ce98808-0c91-41b4-b7b2-1cc8ba75bfd1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    "whatsapp",
+                    "template",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"category\": \"ALERT_UPDATE\",\n  \"channel\": {\n    \"channel_id\": \"string\",\n    \"id\": 7790,\n    \"channel_type\": \"WHATSAPP\",\n    \"name\": \"string\",\n    \"status\": \"INACTIVE\",\n    \"created_on\": \"1998-03-29T08:14:27.287Z\",\n    \"channel_provider\": \"D360_CLOUD_API\",\n    \"is_sandbox\": true\n  },\n  \"id\": \"55e5cb8a-8a84-82f9-bd44-5174560fdfcb\",\n  \"language\": \"sq\",\n  \"name\": \"string\",\n  \"components\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"status\": \"pending_deletion\",\n  \"rejected_reason\": \"string\",\n  \"is_deleted\": false,\n  \"is_sample\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d260108-8bc8-413a-9644-e5fed5ba17d0",
+          "name": "Send a WhatsApp Template",
+          "request": {
+            "name": "Send a WhatsApp Template",
+            "description": {
+              "content": "Send a single WhatsApp message: select a template to use and call our endpoint with the recipient phone number and the variables the template needs. That's it!",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                "whatsapp",
+                "template",
+                ":id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Template Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "(Required) The phone number to send the WhatsApp Template to."
+                },
+                {
+                  "disabled": false,
+                  "key": "variables",
+                  "value": "<string>",
+                  "description": "An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on."
+                },
+                {
+                  "disabled": false,
+                  "key": "variables",
+                  "value": "<string>",
+                  "description": "An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3bf47385-72f7-47db-9827-fa40dffc0b82",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    "whatsapp",
+                    "template",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Template Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone number to send the WhatsApp Template to.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.",
+                        "type": "text/plain"
+                      },
+                      "key": "variables",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.",
+                        "type": "text/plain"
+                      },
+                      "key": "variables",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a513da3a-8b73-42aa-a938-0eb1e0141533\",\n  \"conversation\": \"ee49ab6c-dfd8-4cb6-a512-5880f4385622\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hilos.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5ae40e03-cc42-4808-a5fb-e43e95fcefe0",
+    "name": "Hilos Contact WhatsApp API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.\n\nTo use this token, send with every request an `Authorization: Token <your token>` header.\n\nProduction API server is located at api.hilos.io using HTTPS.\n\nNo versioning info is required for now.",
+      "type": "text/plain"
+    }
+  }
+}

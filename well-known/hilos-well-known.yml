@@ -1,35 +1,51 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: live probes of /.well-known/* on api.hilos.io, hilos.io, app.hilos.io
-note: No well-known documents are published. api.hilos.io and hilos.io return 404 for all probed paths;
-  app.hilos.io returns the SPA index.html (text/html) for every path, which is not a valid well-known
-  document.
+source: live probes of /.well-known/* on api.hilos.io, hilos.io, app.hilos.io and hilos-40.mintlify.app
+note: >-
+  Hilos's own hosts serve nothing at /.well-known/: api.hilos.io and hilos.io 404 every probed path, and
+  app.hilos.io answers 200 with the SPA index.html (text/html) for every path, which is not a document.
+  The documentation deployment (hilos-40.mintlify.app, the origin behind hilos.io/docs) DOES serve two
+  real JSON documents — an A2A agent card and an MCP discovery manifest — both emitted by the Mintlify
+  platform. Those two hits are why a WellKnown pointer is wired; no security.txt exists anywhere, so no
+  SecurityTxt pointer is wired.
 hosts:
 - host: https://api.hilos.io
   documents:
-  - path: /.well-known/security.txt
-    status: 404
-  - path: /.well-known/openid-configuration
-    status: 404
-  - path: /.well-known/oauth-authorization-server
-    status: 404
-  - path: /.well-known/api-catalog
-    status: 404
-  - path: /.well-known/ai-plugin.json
-    status: 404
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
 - host: https://hilos.io
   documents:
-  - path: /.well-known/security.txt
-    status: 404
-  - path: /.well-known/openid-configuration
-    status: 404
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404, note: 'Webflow returns "Invalid .well-known request"'}
+  - {path: /.well-known/agent.json, status: 404}
 - host: https://app.hilos.io
   documents:
-  - path: /.well-known/security.txt
+  - {path: /.well-known/security.txt, status: 200, valid: false, note: 'SPA shell (text/html), not a real document'}
+  - {path: /.well-known/openid-configuration, status: 200, valid: false, note: 'SPA shell (text/html), not a real document'}
+  - {path: /.well-known/agent-card.json, status: 200, valid: false, note: 'SPA shell (text/html), not a real document'}
+- host: https://hilos-40.mintlify.app
+  note: Hilos documentation deployment (Mintlify); the origin behind hilos.io/docs.
+  documents:
+  - path: /.well-known/agent-card.json
     status: 200
-    valid: false
-    note: SPA shell (text/html), not a real document
-  - path: /.well-known/openid-configuration
+    valid: true
+    content_type: application/json
+    file: hilos-agent-card.json
+    note: A2A agent card for the docs site; graded in a2a/hilos-a2a.yml.
+  - path: /.well-known/mcp.json
     status: 200
-    valid: false
-    note: SPA shell (text/html), not a real document
+    valid: true
+    content_type: application/json
+    file: hilos-mcp.json
+    note: 'MCP discovery manifest naming https://hilos-40.mintlify.app/mcp, transport http, authentication none.'
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent.json, status: 404}

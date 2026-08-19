@@ -1,0 +1,28 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://hilos.io/docs/developer/getting-started/errors +
+  https://hilos-40.mintlify.app/llms.txt (full docs index) + MCP docs search over the Hilos
+  documentation corpus
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+note: >-
+  Hilos documents no API rate limits. The developer section (auth, pagination, errors, test request)
+  says nothing about quotas, and the published error table stops at 401/403/404/405/500 — there is no
+  429 documented and no X-RateLimit-*/RateLimit-*/Retry-After header described anywhere in the docs.
+  An agent calling this API has no runtime rate-limit signal to read.
+upstream_limits:
+- scope: whatsapp-messaging
+  authority: Meta / WhatsApp Cloud API
+  docs: https://hilos.io/docs/en/user/using-hilos/whatsapp-guides/messaging-limits
+  note: >-
+    Hilos documents Meta's WhatsApp messaging limits (unverified businesses 250 business-initiated
+    conversations per month, verified businesses start at 1,000 and are raised by Meta based on usage)
+    and the "Spam rate limit hit" error that appears when the number's tier is exceeded. These are
+    Meta's conversation quotas on the underlying WhatsApp number, NOT rate limits on the Hilos REST
+    API, and they are recorded here as context only — they are deliberately not counted in limit_count.
+evidence:
+- {url: 'https://hilos.io/docs/developer/getting-started/errors.md', status: 200, note: 'error table has no 429'}
+- {url: 'https://hilos-40.mintlify.app/llms.txt', status: 200, note: 'no rate-limit page in the developer docs index'}
