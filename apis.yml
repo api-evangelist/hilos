@@ -119,6 +119,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/hilos-capability-edges.yml
+  name: Hilos Business Capability Map
 - type: Overlay
   url: overlays/hilos-openapi-overlay.yaml
 - type: DomainSecurity
