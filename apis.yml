@@ -105,16 +105,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hilos-user-api-openapi.yml
-- aid: hilos:hilos-whatsapp-api
-  name: Hilos WhatsApp API
-  description: The WhatsApp API from Hilos — 3 operation(s) for whatsapp.
+- aid: hilos:hilos-whats-app-api
+  name: Hilos Whats App API
+  description: The Whats App API from Hilos — 3 operation(s) for whats app.
   humanURL: https://hilos.io/docs
   baseURL: https://api.hilos.io/api/
   tags:
-  - WhatsApp
+  - Whats App
   properties:
   - type: OpenAPI
-    url: openapi/hilos-whatsapp-api-openapi.yml
+    url: openapi/hilos-whats-app-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
