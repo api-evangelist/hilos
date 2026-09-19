@@ -71,6 +71,8 @@ apis:
   humanURL: https://hilos.io/docs
   baseURL: https://api.hilos.io/api/
   tags:
+  - Conversations
+  tags_raw:
   - Conversation
   properties:
   - type: OpenAPI
@@ -111,6 +113,8 @@ apis:
   humanURL: https://hilos.io/docs
   baseURL: https://api.hilos.io/api/
   tags:
+  - WhatsApp
+  tags_raw:
   - Whats App
   properties:
   - type: OpenAPI
