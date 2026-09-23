@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hilos Contact User API
+  title: Hilos User API
   version: 1.0.0
   description: 'All of the below API endpoints require API key authentication, get your token at https://app.hilos.io/dev/api-keys.
 
 
-    To use this token, send with every request an `Authorization: Token <your token>` header.
+    To use this token, send with every request an `Authorization: Token ` header.
 
 
     Production API server is located at api.hilos.io using HTTPS.
@@ -25,7 +25,7 @@ paths:
       tags:
       - User
       summary: List Users
-      description: 'Lists Users. '
+      description: Lists Users.
       operationId: List Users
       parameters:
       - in: query
@@ -116,15 +116,12 @@ paths:
       - tokenAuth: []
 components:
   schemas:
-    ChannelTypeEnum:
+    UserRoleEnum:
       enum:
-      - WHATSAPP
-      - EMAIL
-      - INSTAGRAM
-      - FB_MESSENGER
-      - TELEGRAM
-      - SMS
-      - VOICE
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
       type: string
     AccountMemberUser:
       type: object
@@ -175,42 +172,6 @@ components:
       - id
       - last_name
       - profile_image
-    UserRoleEnum:
-      enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
-      type: string
-    ChannelStatusEnum:
-      enum:
-      - NEW
-      - ACTIVE
-      - INACTIVE
-      type: string
-    TeamSimple:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        assignment_strategy:
-          type: string
-          maxLength: 15
-      required:
-      - assignment_strategy
-      - id
-      - name
-    ChannelProviderEnum:
-      enum:
-      - META_CLOUD_API
-      - TECH_PROVIDER_CLOUD_API
-      - D360_CLOUD_API
-      - 360DIALOG
-      type: string
     SimpleChannel:
       type: object
       properties:
@@ -238,6 +199,45 @@ components:
       required:
       - channel_id
       - id
+    ChannelStatusEnum:
+      enum:
+      - NEW
+      - ACTIVE
+      - INACTIVE
+      type: string
+    TeamSimple:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        assignment_strategy:
+          type: string
+          maxLength: 15
+      required:
+      - assignment_strategy
+      - id
+      - name
+    ChannelTypeEnum:
+      enum:
+      - WHATSAPP
+      - EMAIL
+      - INSTAGRAM
+      - FB_MESSENGER
+      - TELEGRAM
+      - SMS
+      - VOICE
+      type: string
+    ChannelProviderEnum:
+      enum:
+      - META_CLOUD_API
+      - TECH_PROVIDER_CLOUD_API
+      - D360_CLOUD_API
+      - 360DIALOG
+      type: string
   securitySchemes:
     tokenAuth:
       type: apiKey

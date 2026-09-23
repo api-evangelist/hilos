@@ -1,12 +1,7 @@
 {
   "provider": "hilos",
   "sources": [
-    "hilos-contact-api-openapi.yml",
-    "hilos-conversation-api-openapi.yml",
-    "hilos-flow-execution-api-openapi.yml",
-    "hilos-flow-execution-contact-api-openapi.yml",
-    "hilos-user-api-openapi.yml",
-    "hilos-whatsapp-api-openapi.yml"
+    "_original/hilos-openapi-original.yml"
   ],
   "outputs": [
     "hilos-contact-api-openapi.yml",
@@ -16,9 +11,23 @@
     "hilos-user-api-openapi.yml",
     "hilos-whatsapp-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hilos-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: hilos-whats-app-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "hilos-contact-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hilos-conversation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hilos-flow-execution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hilos-flow-execution-contact-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hilos-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hilos-whats-app-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
