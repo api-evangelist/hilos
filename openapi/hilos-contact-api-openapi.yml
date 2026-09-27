@@ -26,7 +26,7 @@ paths:
       - Contact
       summary: List contacts
       description: Lists contacts.
-      operationId: List Contacts
+      operationId: ListContacts
       parameters:
       - name: page
         required: false
@@ -67,6 +67,8 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: List Contacts
     post:
       tags:
       - Contact
@@ -78,7 +80,7 @@ paths:
 
 
         We append the received `meta`, `tags` and `default_assignees` properties with the contact current ones, if you want to delete some key inside the `meta` or a `tags` you have to use the `overwrite_meta` or `overwrite_tags` attributes in the request body.'
-      operationId: Create or Update Contact
+      operationId: CreateOrUpdateContact
       requestBody:
         content:
           application/json:
@@ -99,13 +101,15 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Create or Update Contact
   /api/contact/{id}:
     delete:
       tags:
       - Contact
       summary: Delete Contact
       description: Deleting a contact won't delete its history nor its sent messages.
-      operationId: Delete Contact Operation ID
+      operationId: DeleteContactOperationID
       parameters:
       - in: path
         name: id
@@ -118,12 +122,14 @@ paths:
           description: No response body
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Delete Contact Operation ID
     get:
       tags:
       - Contact
       summary: Get Contact
       description: Gets a Contact by Id.
-      operationId: Get Contact
+      operationId: GetContact
       parameters:
       - in: path
         name: id
@@ -140,6 +146,8 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Get Contact
     patch:
       tags:
       - Contact
@@ -148,7 +156,7 @@ paths:
 
 
         If you send the `meta` or `tags` the contact will have those properties appended with the contact current ones.'
-      operationId: Partial Update Contact
+      operationId: PartialUpdateContact
       parameters:
       - in: path
         name: id
@@ -176,6 +184,8 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Partial Update Contact
     put:
       tags:
       - Contact
@@ -184,7 +194,7 @@ paths:
 
 
         If you send a empty `meta` or `tags` the contact will have those properties removed.'
-      operationId: Update Contact
+      operationId: UpdateContact
       parameters:
       - in: path
         name: id
@@ -212,11 +222,51 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Update Contact
 components:
   schemas:
-    ContactDetailReadPublic:
+    AccountMemberUserBasicRead:
       type: object
       properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        account:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
+    PatchedContactEditPublic:
+      type: object
+      properties:
+        phone:
+          type: string
+          maxLength: 30
         first_name:
           type:
           - string
@@ -242,79 +292,36 @@ components:
           - 'null'
           format: uri
           maxLength: 200
-        canonical_phone:
-          type: string
-          maxLength: 30
-        created_by:
-          type: integer
-          readOnly: true
-          description: User ID of the user who created the contact
-        phone:
-          type: string
-          description: Phone number of the contact
         id:
           type: string
-          description: UUID representing the contact ID
+          format: uuid
+        source:
+          type: string
+          default: website
         created_on:
           type: string
           format: date-time
           title: Creado el
-        last_updated_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Última actualización el
-        source:
-          type: string
-          maxLength: 255
         tags:
           type: array
           items:
             $ref: '#/components/schemas/ContactTag'
-          description: Tags associated with the contact
         default_assignees:
           type: array
           items:
-            $ref: '#/components/schemas/AccountMemberUserBasicRead'
-          description: ID of the default assignees for the contact
-        inbox_contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/InboxContactURL'
-          description: URL of the inbox conversation associated with the contact
-        default_conversation_url:
-          type: string
-          readOnly: true
-      required:
-      - canonical_phone
-      - created_by
-      - default_assignees
-      - default_conversation_url
-      - id
-      - inbox_contacts
-      - last_updated_on
-      - phone
-      - source
-      - tags
-    ContactTag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 100
-      required:
-      - id
-      - name
-    UserRoleEnum:
-      enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
-      type: string
+            type: integer
+        overwrite_tags:
+          type: boolean
+          default: false
+          description: If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_default_assignees:
+          type: boolean
+          default: false
+          description: If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_meta:
+          type: boolean
+          default: false
+          description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
     ContactNoteRead:
       type: object
       properties:
@@ -409,41 +416,35 @@ components:
       - phone
       - source
       - tags
-    AccountMemberUserBasicRead:
+    PaginatedContactListReadPublicList:
       type: object
       properties:
-        id:
+        count:
           type: integer
-        first_name:
-          type: string
-          readOnly: true
-        last_name:
-          type: string
-          readOnly: true
-        email:
-          type: string
-          format: email
-          readOnly: true
-          title: Email address
-        account:
-          type: integer
-          readOnly: true
-        profile_image:
-          type: string
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
           format: uri
-          readOnly: true
-        date_joined:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - account
-      - date_joined
-      - email
-      - first_name
-      - id
-      - last_name
-      - profile_image
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactListReadPublic'
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
     SimpleUser:
       type: object
       properties:
@@ -470,28 +471,114 @@ components:
           $ref: '#/components/schemas/UserRoleEnum'
       required:
       - id
-    PaginatedContactListReadPublicList:
+    ContactTag:
       type: object
       properties:
-        count:
+        id:
           type: integer
-          example: 123
-        next:
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    InboxContactURL:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          readOnly: true
+        channel:
+          type: integer
+      required:
+      - channel
+      - url
+    ContactDetailReadPublic:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        last_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
           type:
           - string
           - 'null'
           format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
+          maxLength: 200
+        canonical_phone:
+          type: string
+          maxLength: 30
+        created_by:
+          type: integer
+          readOnly: true
+          description: User ID of the user who created the contact
+        phone:
+          type: string
+          description: Phone number of the contact
+        id:
+          type: string
+          description: UUID representing the contact ID
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        last_updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización el
+        source:
+          type: string
+          maxLength: 255
+        tags:
           type: array
           items:
-            $ref: '#/components/schemas/ContactListReadPublic'
+            $ref: '#/components/schemas/ContactTag'
+          description: Tags associated with the contact
+        default_assignees:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicRead'
+          description: ID of the default assignees for the contact
+        inbox_contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxContactURL'
+          description: URL of the inbox conversation associated with the contact
+        default_conversation_url:
+          type: string
+          readOnly: true
+      required:
+      - canonical_phone
+      - created_by
+      - default_assignees
+      - default_conversation_url
+      - id
+      - inbox_contacts
+      - last_updated_on
+      - phone
+      - source
+      - tags
     ContactDetailRead:
       type: object
       properties:
@@ -592,81 +679,6 @@ components:
       - phone
       - source
       - tags
-    PatchedContactEditPublic:
-      type: object
-      properties:
-        phone:
-          type: string
-          maxLength: 30
-        first_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        last_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        email:
-          type:
-          - string
-          - 'null'
-          format: email
-          maxLength: 254
-        meta:
-          type: object
-          additionalProperties: {}
-        external_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        id:
-          type: string
-          format: uuid
-        source:
-          type: string
-          default: website
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactTag'
-        default_assignees:
-          type: array
-          items:
-            type: integer
-        overwrite_tags:
-          type: boolean
-          default: false
-          description: If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-        overwrite_default_assignees:
-          type: boolean
-          default: false
-          description: If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-        overwrite_meta:
-          type: boolean
-          default: false
-          description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-    InboxContactURL:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        url:
-          type: string
-          readOnly: true
-        channel:
-          type: integer
-      required:
-      - channel
-      - url
   securitySchemes:
     tokenAuth:
       type: apiKey

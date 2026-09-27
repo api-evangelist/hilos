@@ -26,7 +26,7 @@ paths:
       - User
       summary: List Users
       description: Lists Users.
-      operationId: List Users
+      operationId: ListUsers
       parameters:
       - in: query
         name: email__icontains
@@ -114,8 +114,53 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: List Users
 components:
   schemas:
+    ChannelTypeEnum:
+      enum:
+      - WHATSAPP
+      - EMAIL
+      - INSTAGRAM
+      - FB_MESSENGER
+      - TELEGRAM
+      - SMS
+      - VOICE
+      type: string
+    ChannelStatusEnum:
+      enum:
+      - NEW
+      - ACTIVE
+      - INACTIVE
+      type: string
+    SimpleChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
+          type: string
+          maxLength: 100
+        channel_id:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
+      required:
+      - channel_id
+      - id
     UserRoleEnum:
       enum:
       - AGENT
@@ -123,6 +168,22 @@ components:
       - ADMIN
       - FINANCE
       type: string
+    TeamSimple:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        assignment_strategy:
+          type: string
+          maxLength: 15
+      required:
+      - assignment_strategy
+      - id
+      - name
     AccountMemberUser:
       type: object
       properties:
@@ -172,65 +233,6 @@ components:
       - id
       - last_name
       - profile_image
-    SimpleChannel:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        channel_type:
-          $ref: '#/components/schemas/ChannelTypeEnum'
-        name:
-          type: string
-          maxLength: 100
-        channel_id:
-          type: string
-          maxLength: 100
-        status:
-          $ref: '#/components/schemas/ChannelStatusEnum'
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        channel_provider:
-          $ref: '#/components/schemas/ChannelProviderEnum'
-        is_sandbox:
-          type: boolean
-      required:
-      - channel_id
-      - id
-    ChannelStatusEnum:
-      enum:
-      - NEW
-      - ACTIVE
-      - INACTIVE
-      type: string
-    TeamSimple:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        assignment_strategy:
-          type: string
-          maxLength: 15
-      required:
-      - assignment_strategy
-      - id
-      - name
-    ChannelTypeEnum:
-      enum:
-      - WHATSAPP
-      - EMAIL
-      - INSTAGRAM
-      - FB_MESSENGER
-      - TELEGRAM
-      - SMS
-      - VOICE
-      type: string
     ChannelProviderEnum:
       enum:
       - META_CLOUD_API

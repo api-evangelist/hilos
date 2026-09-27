@@ -54,6 +54,7 @@ tags:
 - Chatbots
 - Customer Engagement
 - Marketing
+- A2A
 apis:
 - aid: hilos:hilos-contact-api
   name: Hilos Contact API
@@ -113,8 +114,6 @@ apis:
   humanURL: https://hilos.io/docs
   baseURL: https://api.hilos.io/api/
   tags:
-  - WhatsApp
-  tags_raw:
   - Whats App
   properties:
   - type: OpenAPI

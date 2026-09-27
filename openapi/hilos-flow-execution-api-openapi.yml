@@ -26,7 +26,7 @@ paths:
       - Flow Execution
       summary: List Flow Executions
       description: Lists Flow Executions.
-      operationId: List Flow Execution
+      operationId: ListFlowExecution
       parameters:
       - in: query
         name: flow
@@ -94,13 +94,15 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: List Flow Execution
   /api/flow-execution/{id}:
     get:
       tags:
       - Flow Execution
       summary: Get Flow Execution
       description: Get Flow Execution by Id.
-      operationId: Get Flow Execution
+      operationId: GetFlowExecution
       parameters:
       - in: path
         name: id
@@ -122,13 +124,15 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Get Flow Execution
   /api/flow/{id}/run:
     post:
       tags:
       - Flow Execution
       summary: Create a Flow Execution
       description: Create a Flow Execution of a Flow.
-      operationId: Create a Flow Execution
+      operationId: CreateAFlowExecution
       parameters:
       - in: path
         name: id
@@ -162,168 +166,48 @@ paths:
           description: ''
       security:
       - tokenAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Create a Flow Execution
 components:
   schemas:
-    FlowExecutionEditSourceEnum:
-      enum:
-      - HUBSPOT
-      - API
-      - FRONTEND
-      type: string
-    PaginatedFlowExecutionListList:
+    SimpleUser:
       type: object
       properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowExecutionList'
-    FlowExecutionCreateRequestExecuteForEnum:
-      enum:
-      - LIST
-      type: string
-    ContactNote:
-      type: object
-      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
         id:
           type: integer
           readOnly: true
-        notes:
-          type: string
-        contact:
-          type: string
-          format: uuid
-          readOnly: true
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Creado el
-        created_by:
-          $ref: '#/components/schemas/SimpleUser'
+        profile_image:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
       required:
-      - contact
-      - created_on
       - id
-      - notes
-    FlowSimpleRead:
+    ContactTag:
       type: object
       properties:
         id:
-          type: string
+          type: integer
           readOnly: true
         name:
           type: string
           maxLength: 100
-        created_by:
-          allOf:
-          - $ref: '#/components/schemas/SimpleUser'
-          readOnly: true
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        is_active:
-          type: boolean
-        status:
-          $ref: '#/components/schemas/FlowStatusEnum'
-        is_legacy:
-          type: boolean
-        channel:
-          allOf:
-          - $ref: '#/components/schemas/SimpleChannel'
-          readOnly: true
-        flow_execution_variables:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
       required:
-      - channel
-      - created_by
       - id
       - name
-    FlowVersionSimpleRead:
-      type: object
-      properties:
-        execution_type:
-          $ref: '#/components/schemas/FlowExecutionTypeEnum'
-        id:
-          type: string
-          format: uuid
-        flow:
-          $ref: '#/components/schemas/FlowSimpleRead'
-        is_current_version:
-          type: boolean
-          readOnly: true
-        version_name:
-          type: string
-          maxLength: 255
-        version_description:
-          type:
-          - string
-          - 'null'
-        published_by:
-          allOf:
-          - $ref: '#/components/schemas/SimpleUser'
-          readOnly: true
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        last_updated_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Última actualización el
-        num_contacts:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        completed:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        expired:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        running:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        canceled:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        failed:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        avg_completion_time:
-          type: string
-      required:
-      - execution_type
-      - flow
-      - is_current_version
-      - last_updated_on
-      - published_by
     ChannelProviderEnum:
       enum:
       - META_CLOUD_API
@@ -331,83 +215,12 @@ components:
       - D360_CLOUD_API
       - 360DIALOG
       type: string
-    FlowExecutionEdit:
-      type: object
-      properties:
-        status:
-          type: string
-          readOnly: true
-          description: The status of the Flow Execution.
-        execute_for:
-          $ref: '#/components/schemas/FlowExecutionExecuteForEnum'
-        inbound_trigger_with:
-          $ref: '#/components/schemas/InboundTriggerWithEnum'
-        inbound_start_message:
-          type:
-          - string
-          - 'null'
-        inbound_start_message_match_exact:
-          type: boolean
-        id:
-          type: string
-          format: uuid
-        has_priority:
-          type: boolean
-        flow_execution_variables:
-          type: object
-          additionalProperties: {}
-        start_on:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        num_contacts:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        expired:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        running:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        completed:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        canceled:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        failed:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        avg_completion_time:
-          type: string
-        contact_filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowExecutionContactFilterEdit'
-          description: The filters to use to get the Contacts that the Flow Execution will run for.
-        contact_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatchedContactEdit'
-          description: The list of Contacts that the Flow Execution will run for.
-        source:
-          $ref: '#/components/schemas/FlowExecutionEditSourceEnum'
-        is_hidden:
-          type: boolean
-      required:
-      - execute_for
-      - status
+    FlowExecutionEditSourceEnum:
+      enum:
+      - HUBSPOT
+      - API
+      - FRONTEND
+      type: string
     PatchedContactEdit:
       type: object
       properties:
@@ -497,38 +310,22 @@ components:
           type: boolean
           default: false
           description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-    SimpleChannel:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        channel_type:
-          $ref: '#/components/schemas/ChannelTypeEnum'
-        name:
-          type: string
-          maxLength: 100
-        channel_id:
-          type: string
-          maxLength: 100
-        status:
-          $ref: '#/components/schemas/ChannelStatusEnum'
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        channel_provider:
-          $ref: '#/components/schemas/ChannelProviderEnum'
-        is_sandbox:
-          type: boolean
-      required:
-      - channel_id
-      - id
-    FlowExecutionExecuteForEnum:
+    ChannelTypeEnum:
       enum:
-      - FILTERS
-      - LIST
-      - ALL
+      - WHATSAPP
+      - EMAIL
+      - INSTAGRAM
+      - FB_MESSENGER
+      - TELEGRAM
+      - SMS
+      - VOICE
+      type: string
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
       type: string
     FlowExecutionReadDetail:
       type: object
@@ -627,41 +424,196 @@ components:
       - flow_version
       - last_run_on
       - status
-    InboundTriggerWithEnum:
-      enum:
-      - ANY_MESSAGE
-      - TEXT
-      - IMAGE
-      - FILE
-      type: string
-    ContactTag:
+    FlowExecutionContactFilterEdit:
       type: object
       properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
+        field:
           type: string
-          maxLength: 100
+        comparison:
+          $ref: '#/components/schemas/ComparisonEnum'
+        value:
+          type: string
+        id:
+          type: string
+          format: uuid
       required:
-      - id
-      - name
+      - comparison
+      - field
+      - value
+    PaginatedFlowExecutionListList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowExecutionList'
+    ComparisonEnum:
+      enum:
+      - exact
+      - '!exact'
+      - gte
+      - gt
+      - lte
+      - lt
+      - isnull
+      - '!isnull'
+      - icontains
+      - '!icontains'
+      type: string
+    FlowExecutionTypeEnum:
+      enum:
+      - INBOUND
+      - OUTBOUND
+      type: string
     ChannelStatusEnum:
       enum:
       - NEW
       - ACTIVE
       - INACTIVE
       type: string
-    ChannelTypeEnum:
-      enum:
-      - WHATSAPP
-      - EMAIL
-      - INSTAGRAM
-      - FB_MESSENGER
-      - TELEGRAM
-      - SMS
-      - VOICE
-      type: string
+    SimpleChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
+          type: string
+          maxLength: 100
+        channel_id:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
+      required:
+      - channel_id
+      - id
+    FlowExecutionEdit:
+      type: object
+      properties:
+        status:
+          type: string
+          readOnly: true
+          description: The status of the Flow Execution.
+        execute_for:
+          $ref: '#/components/schemas/FlowExecutionExecuteForEnum'
+        inbound_trigger_with:
+          $ref: '#/components/schemas/InboundTriggerWithEnum'
+        inbound_start_message:
+          type:
+          - string
+          - 'null'
+        inbound_start_message_match_exact:
+          type: boolean
+        id:
+          type: string
+          format: uuid
+        has_priority:
+          type: boolean
+        flow_execution_variables:
+          type: object
+          additionalProperties: {}
+        start_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        num_contacts:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        expired:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        running:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        completed:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        canceled:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        failed:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        avg_completion_time:
+          type: string
+        contact_filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowExecutionContactFilterEdit'
+          description: The filters to use to get the Contacts that the Flow Execution will run for.
+        contact_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatchedContactEdit'
+          description: The list of Contacts that the Flow Execution will run for.
+        source:
+          $ref: '#/components/schemas/FlowExecutionEditSourceEnum'
+        is_hidden:
+          type: boolean
+      required:
+      - execute_for
+      - status
+    ContactNote:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        notes:
+          type: string
+        contact:
+          type: string
+          format: uuid
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        created_by:
+          $ref: '#/components/schemas/SimpleUser'
+      required:
+      - contact
+      - created_on
+      - id
+      - notes
     FlowExecutionStatusEnum:
       enum:
       - PROCESSING
@@ -674,12 +626,25 @@ components:
       - CANCELED
       - PAUSED
       type: string
-    UserRoleEnum:
+    FlowExecutionExecuteForEnum:
       enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
+      - FILTERS
+      - LIST
+      - ALL
+      type: string
+    InboundTriggerWithEnum:
+      enum:
+      - ANY_MESSAGE
+      - TEXT
+      - IMAGE
+      - FILE
+      type: string
+    FlowExecutionExecutionTypeEnum:
+      enum:
+      - INBOUND
+      - OUTBOUND
+      - API
+      - FROM_FLOW
       type: string
     FlowExecutionCreateRequest:
       type: object
@@ -697,6 +662,45 @@ components:
       required:
       - contact_list
       - execute_for
+    FlowSimpleRead:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        created_by:
+          allOf:
+          - $ref: '#/components/schemas/SimpleUser'
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        is_active:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/FlowStatusEnum'
+        is_legacy:
+          type: boolean
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/SimpleChannel'
+          readOnly: true
+        flow_execution_variables:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - channel
+      - created_by
+      - id
+      - name
     FlowExecutionList:
       type: object
       properties:
@@ -765,78 +769,80 @@ components:
       - created_by
       - execute_for
       - execution_type
-    SimpleUser:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          title: Email address
-          maxLength: 254
-        id:
-          type: integer
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-        role:
-          $ref: '#/components/schemas/UserRoleEnum'
-      required:
-      - id
-    FlowExecutionTypeEnum:
-      enum:
-      - INBOUND
-      - OUTBOUND
-      type: string
-    ComparisonEnum:
-      enum:
-      - exact
-      - '!exact'
-      - gte
-      - gt
-      - lte
-      - lt
-      - isnull
-      - '!isnull'
-      - icontains
-      - '!icontains'
-      type: string
     FlowStatusEnum:
       enum:
       - DRAFT
       - PUBLISHED
       type: string
-    FlowExecutionContactFilterEdit:
+    FlowExecutionCreateRequestExecuteForEnum:
+      enum:
+      - LIST
+      type: string
+    FlowVersionSimpleRead:
       type: object
       properties:
-        field:
-          type: string
-        comparison:
-          $ref: '#/components/schemas/ComparisonEnum'
-        value:
-          type: string
+        execution_type:
+          $ref: '#/components/schemas/FlowExecutionTypeEnum'
         id:
           type: string
           format: uuid
+        flow:
+          $ref: '#/components/schemas/FlowSimpleRead'
+        is_current_version:
+          type: boolean
+          readOnly: true
+        version_name:
+          type: string
+          maxLength: 255
+        version_description:
+          type:
+          - string
+          - 'null'
+        published_by:
+          allOf:
+          - $ref: '#/components/schemas/SimpleUser'
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        last_updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización el
+        num_contacts:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        completed:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        expired:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        running:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        canceled:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        failed:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        avg_completion_time:
+          type: string
       required:
-      - comparison
-      - field
-      - value
-    FlowExecutionExecutionTypeEnum:
-      enum:
-      - INBOUND
-      - OUTBOUND
-      - API
-      - FROM_FLOW
-      type: string
+      - execution_type
+      - flow
+      - is_current_version
+      - last_updated_on
+      - published_by
   securitySchemes:
     tokenAuth:
       type: apiKey
