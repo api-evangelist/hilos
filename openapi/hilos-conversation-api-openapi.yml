@@ -141,6 +141,71 @@ paths:
       x-operation-id-original: Update a Conversation
 components:
   schemas:
+    PaginatedConversationReadSimpleList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationReadSimple'
+    ConversationEdit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/ConversationStatusEnum'
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMemberUserBasicEdit'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type:
+          - integer
+          - 'null'
+      required:
+      - assigned
+      - contact
+      - created_on
+      - id
+      - source
     AccountMemberUserBasicRead:
       type: object
       properties:
@@ -176,18 +241,37 @@ components:
       - id
       - last_name
       - profile_image
-    ConversationTag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 100
-      required:
-      - id
-      - name
+    ConversationSourceEnum:
+      enum:
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      - UNKNOWN
+      type: string
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    MessageStatusEnum:
+      enum:
+      - new
+      - retry
+      - accepted
+      - sending
+      - sent
+      - receiving
+      - received
+      - delivered
+      - undelivered
+      - failed
+      - read
+      - deleted
+      type: string
     PatchedConversationEdit:
       type: object
       properties:
@@ -225,110 +309,6 @@ components:
           type:
           - integer
           - 'null'
-    MessageTypeEnum:
-      enum:
-      - audio
-      - voice
-      - button
-      - document
-      - text
-      - image
-      - interactive
-      - order
-      - sticker
-      - system
-      - unknown
-      - video
-      - unsupported
-      - location
-      - contacts
-      - template
-      - reaction
-      - ephemeral
-      type: string
-    UserRoleEnum:
-      enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
-      type: string
-    AccountMemberUserBasicEdit:
-      type: object
-      properties:
-        id:
-          type: integer
-      required:
-      - id
-    ConversationSourceEnum:
-      enum:
-      - INBOX
-      - AUTO_RESPONSE
-      - API
-      - BROADCAST
-      - FLOW
-      - UNKNOWN
-      type: string
-    ConversationStatusEnum:
-      enum:
-      - CREATED
-      - FLOW
-      - FLOW_PAUSED
-      - NEW
-      - IN_PROGRESS
-      - RESOLVED
-      - CLOSED
-      type: string
-    SimpleUser:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          title: Email address
-          maxLength: 254
-        id:
-          type: integer
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-        role:
-          $ref: '#/components/schemas/UserRoleEnum'
-      required:
-      - id
-    MessageSourceEnum:
-      enum:
-      - INBOUND
-      - INBOX
-      - AUTO_RESPONSE
-      - API
-      - BROADCAST
-      - FLOW
-      type: string
-    MessageStatusEnum:
-      enum:
-      - new
-      - retry
-      - accepted
-      - sending
-      - sent
-      - receiving
-      - received
-      - delivered
-      - undelivered
-      - failed
-      - read
-      - deleted
-      type: string
     ConversationReadSimple:
       type: object
       properties:
@@ -380,71 +360,53 @@ components:
       - id
       - source
       - status
-    ConversationEdit:
+    MessageTypeEnum:
+      enum:
+      - audio
+      - voice
+      - button
+      - document
+      - text
+      - image
+      - interactive
+      - order
+      - sticker
+      - system
+      - unknown
+      - video
+      - unsupported
+      - location
+      - contacts
+      - template
+      - reaction
+      - ephemeral
+      type: string
+    SimpleUser:
       type: object
       properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
         id:
-          type: string
-          description: The UUID of the Conversation.
-        contact:
-          type: string
-          format: uuid
-        status:
-          $ref: '#/components/schemas/ConversationStatusEnum'
-        assigned:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountMemberUserBasicEdit'
-          description: The Users assigned to the Conversation.
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationTag'
-          description: The Tags assigned to the Conversation.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Creado el
-        source:
-          allOf:
-          - $ref: '#/components/schemas/ConversationSourceEnum'
-          readOnly: true
-        assigned_team:
           type: integer
-          description: The ID of the Team assigned to the Conversation.
-        channel:
+          readOnly: true
+        profile_image:
           type:
-          - integer
+          - string
           - 'null'
+          format: uri
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
       required:
-      - assigned
-      - contact
-      - created_on
       - id
-      - source
-    PaginatedConversationReadSimpleList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationReadSimple'
     WhatsAppMessageSimple:
       type: object
       properties:
@@ -560,6 +522,44 @@ components:
       - timestamp
       - to_number
       - whatsapp_template
+    AccountMemberUserBasicEdit:
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+      - id
+    MessageSourceEnum:
+      enum:
+      - INBOUND
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      type: string
+    ConversationTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    ConversationStatusEnum:
+      enum:
+      - CREATED
+      - FLOW
+      - FLOW_PAUSED
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - CLOSED
+      type: string
   securitySchemes:
     tokenAuth:
       type: apiKey
