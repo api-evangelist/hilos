@@ -224,74 +224,6 @@ paths:
       x-operation-id-original: Send a WhatsApp Template Message
 components:
   schemas:
-    WhatsAppTemplateRead:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 120
-        language:
-          $ref: '#/components/schemas/LanguageEnum'
-        components:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-          description: The UUID of the WhatsApp Template to be sent.
-        category:
-          $ref: '#/components/schemas/CategoryEnum'
-        status:
-          $ref: '#/components/schemas/WhatsAppTemplateStatusEnum'
-        rejected_reason:
-          type:
-          - string
-          - 'null'
-        is_deleted:
-          type: boolean
-        channel:
-          allOf:
-          - $ref: '#/components/schemas/SimpleChannel'
-          readOnly: true
-          description: The ID of the WhatsApp Channel that the WhatsApp Template is for.
-        is_sample:
-          type: boolean
-      required:
-      - category
-      - channel
-      - id
-      - language
-      - name
-    SimpleChannel:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        channel_type:
-          $ref: '#/components/schemas/ChannelTypeEnum'
-        name:
-          type: string
-          maxLength: 100
-        channel_id:
-          type: string
-          maxLength: 100
-        status:
-          $ref: '#/components/schemas/ChannelStatusEnum'
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        channel_provider:
-          $ref: '#/components/schemas/ChannelProviderEnum'
-        is_sandbox:
-          type: boolean
-      required:
-      - channel_id
-      - id
     ChannelTypeEnum:
       enum:
       - WHATSAPP
@@ -302,61 +234,6 @@ components:
       - SMS
       - VOICE
       type: string
-    WhatsAppTemplateSend:
-      type: object
-      properties:
-        variables:
-          type: array
-          items:
-            type: string
-          description: An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.
-        phone:
-          type: string
-          description: The phone number to send the WhatsApp Template to.
-          maxLength: 20
-      required:
-      - phone
-    WhatsAppTemplateStatusEnum:
-      enum:
-      - draft
-      - approved
-      - in_appeal
-      - pending
-      - rejected
-      - pending_deletion
-      - deleted
-      - disabled
-      - submitted
-      type: string
-    ChannelProviderEnum:
-      enum:
-      - META_CLOUD_API
-      - TECH_PROVIDER_CLOUD_API
-      - D360_CLOUD_API
-      - 360DIALOG
-      type: string
-    PaginatedWhatsAppTemplateSimpleReadList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhatsAppTemplateSimpleRead'
     LanguageEnum:
       enum:
       - af
@@ -431,6 +308,20 @@ components:
       - vi
       - zu
       type: string
+    WhatsAppTemplateSendPublicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Message Id
+        conversation:
+          type: string
+          format: uuid
+          description: Message Conversation Id
+      required:
+      - conversation
+      - id
     CategoryEnum:
       enum:
       - ACCOUNT_UPDATE
@@ -449,6 +340,135 @@ components:
       - OTP
       - AUTHENTICATION
       - UTILITY
+      type: string
+    WhatsAppTemplateRead:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 120
+        language:
+          $ref: '#/components/schemas/LanguageEnum'
+        components:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: The UUID of the WhatsApp Template to be sent.
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        status:
+          $ref: '#/components/schemas/WhatsAppTemplateStatusEnum'
+        rejected_reason:
+          type:
+          - string
+          - 'null'
+        is_deleted:
+          type: boolean
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/SimpleChannel'
+          readOnly: true
+          description: The ID of the WhatsApp Channel that the WhatsApp Template is for.
+        is_sample:
+          type: boolean
+      required:
+      - category
+      - channel
+      - id
+      - language
+      - name
+    ChannelProviderEnum:
+      enum:
+      - META_CLOUD_API
+      - TECH_PROVIDER_CLOUD_API
+      - D360_CLOUD_API
+      - 360DIALOG
+      type: string
+    SimpleChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
+          type: string
+          maxLength: 100
+        channel_id:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
+      required:
+      - channel_id
+      - id
+    ChannelStatusEnum:
+      enum:
+      - NEW
+      - ACTIVE
+      - INACTIVE
+      type: string
+    WhatsAppTemplateSend:
+      type: object
+      properties:
+        variables:
+          type: array
+          items:
+            type: string
+          description: An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.
+        phone:
+          type: string
+          description: The phone number to send the WhatsApp Template to.
+          maxLength: 20
+      required:
+      - phone
+    PaginatedWhatsAppTemplateSimpleReadList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhatsAppTemplateSimpleRead'
+    WhatsAppTemplateStatusEnum:
+      enum:
+      - draft
+      - approved
+      - in_appeal
+      - pending
+      - rejected
+      - pending_deletion
+      - deleted
+      - disabled
+      - submitted
       type: string
     WhatsAppTemplateSimpleRead:
       type: object
@@ -488,26 +508,6 @@ components:
       - id
       - language
       - name
-    ChannelStatusEnum:
-      enum:
-      - NEW
-      - ACTIVE
-      - INACTIVE
-      type: string
-    WhatsAppTemplateSendPublicResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Message Id
-        conversation:
-          type: string
-          format: uuid
-          description: Message Conversation Id
-      required:
-      - conversation
-      - id
   securitySchemes:
     tokenAuth:
       type: apiKey

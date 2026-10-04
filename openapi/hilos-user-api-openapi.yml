@@ -118,49 +118,6 @@ paths:
       x-operation-id-original: List Users
 components:
   schemas:
-    TeamSimple:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        assignment_strategy:
-          type: string
-          maxLength: 15
-      required:
-      - assignment_strategy
-      - id
-      - name
-    SimpleChannel:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        channel_type:
-          $ref: '#/components/schemas/ChannelTypeEnum'
-        name:
-          type: string
-          maxLength: 100
-        channel_id:
-          type: string
-          maxLength: 100
-        status:
-          $ref: '#/components/schemas/ChannelStatusEnum'
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        channel_provider:
-          $ref: '#/components/schemas/ChannelProviderEnum'
-        is_sandbox:
-          type: boolean
-      required:
-      - channel_id
-      - id
     ChannelTypeEnum:
       enum:
       - WHATSAPP
@@ -170,20 +127,6 @@ components:
       - TELEGRAM
       - SMS
       - VOICE
-      type: string
-    ChannelProviderEnum:
-      enum:
-      - META_CLOUD_API
-      - TECH_PROVIDER_CLOUD_API
-      - D360_CLOUD_API
-      - 360DIALOG
-      type: string
-    UserRoleEnum:
-      enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
       type: string
     AccountMemberUser:
       type: object
@@ -234,12 +177,69 @@ components:
       - id
       - last_name
       - profile_image
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    ChannelProviderEnum:
+      enum:
+      - META_CLOUD_API
+      - TECH_PROVIDER_CLOUD_API
+      - D360_CLOUD_API
+      - 360DIALOG
+      type: string
+    SimpleChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
+          type: string
+          maxLength: 100
+        channel_id:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
+      required:
+      - channel_id
+      - id
     ChannelStatusEnum:
       enum:
       - NEW
       - ACTIVE
       - INACTIVE
       type: string
+    TeamSimple:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        assignment_strategy:
+          type: string
+          maxLength: 15
+      required:
+      - assignment_strategy
+      - id
+      - name
   securitySchemes:
     tokenAuth:
       type: apiKey

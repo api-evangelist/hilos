@@ -226,6 +226,89 @@ paths:
       x-operation-id-original: Update Contact
 components:
   schemas:
+    SimpleUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        profile_image:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role:
+          $ref: '#/components/schemas/UserRoleEnum'
+      required:
+      - id
+    AccountMemberUserBasicRead:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        account:
+          type: integer
+          readOnly: true
+        profile_image:
+          type: string
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
+    PaginatedContactListReadPublicList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactListReadPublic'
     ContactTag:
       type: object
       properties:
@@ -238,6 +321,51 @@ components:
       required:
       - id
       - name
+    ContactNoteRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        notes:
+          type: string
+        contact:
+          type: string
+          format: uuid
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        created_by:
+          $ref: '#/components/schemas/SimpleUser'
+      required:
+      - contact
+      - created_on
+      - id
+      - notes
+    UserRoleEnum:
+      enum:
+      - AGENT
+      - MANAGER
+      - ADMIN
+      - FINANCE
+      type: string
+    InboxContactURL:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          readOnly: true
+        channel:
+          type: integer
+      required:
+      - channel
+      - url
     ContactDetailRead:
       type: object
       properties:
@@ -338,102 +466,6 @@ components:
       - phone
       - source
       - tags
-    PatchedContactEditPublic:
-      type: object
-      properties:
-        phone:
-          type: string
-          maxLength: 30
-        first_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        last_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        email:
-          type:
-          - string
-          - 'null'
-          format: email
-          maxLength: 254
-        meta:
-          type: object
-          additionalProperties: {}
-        external_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        id:
-          type: string
-          format: uuid
-        source:
-          type: string
-          default: website
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactTag'
-        default_assignees:
-          type: array
-          items:
-            type: integer
-        overwrite_tags:
-          type: boolean
-          default: false
-          description: If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-        overwrite_default_assignees:
-          type: boolean
-          default: false
-          description: If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-        overwrite_meta:
-          type: boolean
-          default: false
-          description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
-    AccountMemberUserBasicRead:
-      type: object
-      properties:
-        id:
-          type: integer
-        first_name:
-          type: string
-          readOnly: true
-        last_name:
-          type: string
-          readOnly: true
-        email:
-          type: string
-          format: email
-          readOnly: true
-          title: Email address
-        account:
-          type: integer
-          readOnly: true
-        profile_image:
-          type: string
-          format: uri
-          readOnly: true
-        date_joined:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - account
-      - date_joined
-      - email
-      - first_name
-      - id
-      - last_name
-      - profile_image
     ContactListReadPublic:
       type: object
       properties:
@@ -504,39 +536,6 @@ components:
       - phone
       - source
       - tags
-    UserRoleEnum:
-      enum:
-      - AGENT
-      - MANAGER
-      - ADMIN
-      - FINANCE
-      type: string
-    SimpleUser:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          title: Email address
-          maxLength: 254
-        id:
-          type: integer
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-        role:
-          $ref: '#/components/schemas/UserRoleEnum'
-      required:
-      - id
     ContactDetailReadPublic:
       type: object
       properties:
@@ -619,66 +618,67 @@ components:
       - phone
       - source
       - tags
-    InboxContactURL:
+    PatchedContactEditPublic:
       type: object
       properties:
-        id:
+        phone:
           type: string
-          format: uuid
-        url:
-          type: string
-          readOnly: true
-        channel:
-          type: integer
-      required:
-      - channel
-      - url
-    PaginatedContactListReadPublicList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
+          maxLength: 30
+        first_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        last_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          maxLength: 254
+        meta:
+          type: object
+          additionalProperties: {}
+        external_url:
           type:
           - string
           - 'null'
           format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactListReadPublic'
-    ContactNoteRead:
-      type: object
-      properties:
+          maxLength: 200
         id:
-          type: integer
-          readOnly: true
-        notes:
-          type: string
-        contact:
           type: string
           format: uuid
-          readOnly: true
+        source:
+          type: string
+          default: website
         created_on:
           type: string
           format: date-time
-          readOnly: true
           title: Creado el
-        created_by:
-          $ref: '#/components/schemas/SimpleUser'
-      required:
-      - contact
-      - created_on
-      - id
-      - notes
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactTag'
+        default_assignees:
+          type: array
+          items:
+            type: integer
+        overwrite_tags:
+          type: boolean
+          default: false
+          description: If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_default_assignees:
+          type: boolean
+          default: false
+          description: If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
+        overwrite_meta:
+          type: boolean
+          default: false
+          description: If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false.
   securitySchemes:
     tokenAuth:
       type: apiKey
