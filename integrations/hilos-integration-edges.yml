@@ -1,0 +1,167 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/hilos/integrations
+checked:
+- https://composio.dev/toolkits/hilos
+- https://monid.ai/tools/hilos
+- https://n8n.io/integrations/hilos/
+- https://zapier.com/apps/hilos/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: hilos
+  url: https://zapier.com/apps/hilos/integrations
+  external_url: https://hilos.io/
+  partner_tier: BRONZE
+  triggers:
+  - key: contact_created
+    label: New Contact
+  - key: contact_deleted
+    label: Deleted Contact
+  - key: contact_updated
+    label: Updated Contact
+  - key: flow_execution_contact_completed
+    label: Contact Completed Flow
+  - key: flow_execution_contact_running_inbound
+    label: Contact Joined Inbound Flow
+  actions:
+  - key: contact
+    label: Create or Update Contact
+  - key: flowExecutionContact
+    label: Start a Flow for a Phone Number
+  - key: whatsappMessage
+    label: Send a WhatsApp Message
+  searches:
+  - key: whatsappTemplateSearch
+    label: WhatsApp Template
+edges:
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Teamtailor
+  partner: teamtailor
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/teamtailor
+  direction: third-party
+  category: HR Talent & Recruitment
+  partner_url: https://www.teamtailor.com/
+- partner_name: Facebook Messenger
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/facebook-messenger
+  direction: third-party
+  category: Facebook
+  partner_url: https://www.messenger.com/
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/postgresql
+  direction: third-party
+  category: Databases
+  partner_url: http://www.postgresql.org/
+- partner_name: Tokko Broker
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/hilos/integrations/tokko-broker
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.tokkobroker.com/
+templates:
+- title: Add new contacts in HubSpot to Hilos
+  url: https://zapier.com/apps/hilos/integrations/hubspot/1051712/add-new-contacts-in-hubspot-to-hilos
+  apps:
+  - hubspot
+  - hilos
+- title: Create Hilos contacts from new Airtable records
+  url: https://zapier.com/apps/airtable/integrations/hilos/1065906/create-hilos-contacts-from-new-airtable-records
+  apps:
+  - airtable
+  - hilos
+- title: Add or update contacts in Hilos from new Zendesk tickets
+  url: https://zapier.com/apps/hilos/integrations/zendesk/1065909/add-or-update-contacts-in-hilos-from-new-zendesk-tickets
+  apps:
+  - zendesk
+  - hilos
+- title: Create Zendesk tickets when new contacts complete flows in Hilos
+  url: https://zapier.com/apps/hilos/integrations/zendesk/1065919/create-zendesk-tickets-when-new-contacts-complete-flows-in-hilos
+  apps:
+  - hilos
+  - zendesk
+- title: Create HubSpot deals when new contacts join inbound flows in Hilos
+  url: https://zapier.com/apps/hilos/integrations/hubspot/1065923/create-hubspot-deals-when-new-contacts-join-inbound-flows-in-hilos
+  apps:
+  - hilos
+  - hubspot
+- title: Export newly-completed flow results from Hilos to Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/hilos/1065927/export-newly-completed-flow-results-from-hilos-to-google-sheets-rows
+  apps:
+  - hilos
+  - google-sheets
+- title: Create Hilos contacts from new messages posted to private Slack channels
+  url: https://zapier.com/apps/hilos/integrations/slack/1065931/create-hilos-contacts-from-new-messages-posted-to-private-slack-channels
+  apps:
+  - slack
+  - hilos
+- title: Add new Zoho CRM contacts to Hilos
+  url: https://zapier.com/apps/hilos/integrations/zoho-crm/1065942/add-new-zoho-crm-contacts-to-hilos
+  apps:
+  - zoho-crm
+  - hilos
+- title: Create contacts in Hilos from new Typeform entries
+  url: https://zapier.com/apps/hilos/integrations/typeform/1065947/create-contacts-in-hilos-from-new-typeform-entries
+  apps:
+  - typeform
+  - hilos
+- title: Add new Facebook Lead Ads leads as Hilos contacts
+  url: https://zapier.com/apps/facebook-lead-ads/integrations/hilos/1065949/add-new-facebook-lead-ads-leads-as-hilos-contacts
+  apps:
+  - facebook-lead-ads
+  - hilos
+- title: Send whatsapp messages for new or updated Google Sheets rows with Hilos
+  url: https://zapier.com/apps/google-sheets/integrations/hilos/1230975/send-whatsapp-messages-for-new-or-updated-google-sheets-rows-with-hilos
+  apps:
+  - google-sheets
+  - hilos
+- title: Send whatsapp messages with Hilos for new Google Forms responses
+  url: https://zapier.com/apps/google-forms/integrations/hilos/1254557/send-whatsapp-messages-with-hilos-for-new-google-forms-responses
+  apps:
+  - google-forms
+  - hilos
+template_total: 61
