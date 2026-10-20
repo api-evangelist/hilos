@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/hilos/integrations
@@ -38,72 +38,6 @@ marketplace_apps:
   - key: whatsappTemplateSearch
     label: WhatsApp Template
 edges:
-- partner_name: Google Sheets
-  partner: google-sheets
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/google-sheets
-  direction: third-party
-  category: Google
-  partner_url: http://sheets.google.com/
-- partner_name: Teamtailor
-  partner: teamtailor
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/teamtailor
-  direction: third-party
-  category: HR Talent & Recruitment
-  partner_url: https://www.teamtailor.com/
-- partner_name: Facebook Messenger
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/facebook-messenger
-  direction: third-party
-  category: Facebook
-  partner_url: https://www.messenger.com/
-- partner_name: MySQL
-  partner: mysql
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/mysql
-  direction: third-party
-  category: Databases
-  partner_url: https://www.mysql.com/
-- partner_name: PostgreSQL
-  partner: postgresql
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/postgresql
-  direction: third-party
-  category: Databases
-  partner_url: http://www.postgresql.org/
-- partner_name: Tokko Broker
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/hilos/integrations/tokko-broker
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: http://www.tokkobroker.com/
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -129,6 +63,78 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Teamtailor
+  partner: teamtailor
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/teamtailor
+  direction: third-party
+  category: HR Talent & Recruitment
+  partner_url: https://www.teamtailor.com/
+- partner_name: Facebook Messenger
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/facebook-messenger
+  direction: third-party
+  category: Facebook
+  partner_url: https://www.messenger.com/
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/postgresql
+  direction: third-party
+  category: Databases
+  partner_url: http://www.postgresql.org/
+- partner_name: Tokko Broker
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/hilos/integrations/tokko-broker
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.tokkobroker.com/
 templates:
 - title: Add new contacts in HubSpot to Hilos
   url: https://zapier.com/apps/hilos/integrations/hubspot/1051712/add-new-contacts-in-hubspot-to-hilos
