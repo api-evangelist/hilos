@@ -149,3 +149,16 @@
     year: '2022'
   status: not-a-workflow
   arazzo: null
+- slug: hilos-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: LIVE_CHAT
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/hilos-io-856632
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

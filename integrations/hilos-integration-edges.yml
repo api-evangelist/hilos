@@ -13,6 +13,7 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -167,6 +168,23 @@ edges:
     year: '2022'
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/hilos-io-856632
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - 'Hilos.io: WhatsApp Integration'
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: LIVE_CHAT
 templates:
 - title: Add new contacts in HubSpot to Hilos
   url: https://zapier.com/apps/hilos/integrations/hubspot/1051712/add-new-contacts-in-hubspot-to-hilos
