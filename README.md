@@ -64,6 +64,145 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hilos is a company surfaced as a portfolio company of 500-global, techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Hilos is a WhatsApp Business Platform automation company (backed by 500 Global and Techstars, now part of ActiveCampaign) that helps businesses capture leads, qualify prospects, and automate follow-ups over WhatsApp's Cloud API. Its REST API exposes contacts, inbox conversations, WhatsApp message templates, and no-code flow executions, authenticated with an `Authorization: Token` API key against https://api.hilos.io/api/ and paginated with `page` / `page_size` query parameters.
 
-Backed by: 500-global, techstars — https://hilos.io
+**Areas:** Company · WhatsApp · Messaging · Automation · CRM · Conversational Commerce · Chatbots · Customer Engagement · Marketing · A2A
+
+## Hilos on APIs.io
+
+Everything profiled for Hilos is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hilos/](https://apis.io/providers/hilos/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Hilos Contact API](https://apis.io/apis/hilos/hilos-contact-api/) — The Contact API from Hilos — 2 operation(s) for contact.
+- [Hilos Conversation API](https://apis.io/apis/hilos/hilos-conversation-api/) — The Conversation API from Hilos — 2 operation(s) for conversation.
+- [Hilos Flow Execution API](https://apis.io/apis/hilos/hilos-flow-execution-api/) — The Flow Execution API from Hilos — 3 operation(s) for flow execution.
+- [Hilos Flow Execution Contact API](https://apis.io/apis/hilos/hilos-flow-execution-contact-api/) — The Flow Execution Contact API from Hilos — 2 operation(s) for flow execution contact.
+- [Hilos User API](https://apis.io/apis/hilos/hilos-user-api/) — The User API from Hilos — 1 operation(s) for user.
+- [Hilos Whats App API](https://apis.io/apis/hilos/hilos-whats-app-api/) — The Whats App API from Hilos — 3 operation(s) for whats app.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Hilos Events](https://apis.io/asyncapis/hilos/hilos-events/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Hilos Docs](https://apis.io/servers/hilos/hilos-docs/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Hilos Agentic Access](https://apis.io/agentic-access/hilos/hilos-agentic-access/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Hilos Contact API](https://apis.io/collections/hilos/open-hilos-contact-api/)
+- [Hilos Contact Conversation API](https://apis.io/collections/hilos/open-hilos-conversation-api/)
+- [Hilos Contact Flow Execution API](https://apis.io/collections/hilos/open-hilos-flow-execution-api/)
+- [Hilos Contact Flow Execution Contact API](https://apis.io/collections/hilos/open-hilos-flow-execution-contact-api/)
+- [Hilos Contact User API](https://apis.io/collections/hilos/open-hilos-user-api/)
+- [Hilos Contact WhatsApp API](https://apis.io/collections/hilos/open-hilos-whatsapp-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hilos Openapi Overlay](https://apis.io/overlays/hilos/hilos-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hilos Authentication](https://apis.io/security/hilos/hilos-authentication/)
+- [Hilos Domain Security](https://apis.io/security/hilos/hilos-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hilos Plans Pricing](https://apis.io/plans/hilos/hilos-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hilos Rate Limits](https://apis.io/rate-limits/hilos/hilos-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hilos.io)
+- [Documentation](https://hilos.io/docs)
+- [Getting started](https://hilos.io/docs/developer/getting-started/test-request)
+- [API reference](https://hilos.io/docs/developer/apidocs/contact/get-apicontact)
+- [Sign up](https://hilos.io/signup-ac)
+- [Blog](https://hilos.io/blog)
+- [Terms of service](https://hilos.io/terms-and-conditions)
+- [Privacy policy](https://hilos.io/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 48.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 59.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 34.2 |
+
+**Agent readiness 37.3** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | flavored (partial credit) |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hilos/](https://apis.io/providers/hilos/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hilos: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hilos/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
